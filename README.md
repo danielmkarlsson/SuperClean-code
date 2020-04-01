@@ -1,2 +1,2 @@
-# superclean-code
-Code for running inside SuperClean inside SuperCollider
+# SuperClean code
+SuperClean that I wrote
