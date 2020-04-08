@@ -1,14 +1,14 @@
 // Welcome to the Exploring Technology Live stream. My name is Daniel M Karlsson, I'm a composer who dabbbles w/ programming. 
 // Get comfy and I'll be w/ you shortly. 
-// We are live (and nervous)
+// We are live (and nervous).
 
-Hi. 
-So, I'm a composer. What does that mean? For me it means I want to organise sound. I often get frustrated whn I try to do this.
-I want to use  tool that let's me feel free. That's why I want to use SuperCollider. Even then I get frustrated because SuperCollider is huge. So, the scope need to be narrowed somewhat in order for me to not get as frustrated. Enter SuperClean.
-SuperClean is a subset of things with hopefully an easier and less cumbersome install procedure than what I was coming from.
-When iti si up + running I can quickly get to the part I like most which is organsing sound.
+// Hi. 
+// So, I'm a composer. What does that mean? For me it means I want to organise sound. I often get frustrated when I try to do this.
+// I want to use tools that let's me feel free. That's why I want to use SuperCollider. Even then I get frustrated because SuperCollider is huge. So, the scope needs to be narrowed somewhat in order for me to not get as frustrated. Enter SuperClean.
+// SuperClean for sure has an easier install procedure and is less weighed doen by dependency than what I was coming from.
+// When it is up + running I can quickly get to the part I like most which is organsing sound.
 
-Let's write the simplest thing that will make sound in SuperClean together:
+// Let's write the simplest thing that will make sound in SuperClean together:
 
 ( // opening paranthesis, good for convenience
     Pdef(\0, //Pdef is defined continously, which means we can change it while it's running, very important
@@ -20,15 +20,15 @@ Let's write the simplest thing that will make sound in SuperClean together:
 ) // close convenience paranthesis
  // four on the floor
 
-( // opening paranthesis, good for convenience
-    Pdef(\0, //Pdef is defined continously, which means we can change it while it's running, very important
-        Pbind(*[ // This binds the parameter names on the left to the parameter values on the right
-            type: \clean, // here's where we tell SuperCollider to make SuperClean available to us
-            s: \mmd, // s can stand for sound, or sample or synth, in this case we're asking for a sample folder called mmd
-            n: Pwhite(1,12), // Let's randomly choose between the file in the folder
-        ]) // close the Pbind here
-    ).play(quant:1); // close the Pdef and make sure everything stays in sync with everything else
-) // close convenience paranthesis
+( 
+    Pdef(\0, 
+        Pbind(*[ 
+            type: \clean, 
+            s: \mmd, 
+            n: Pwhite(1,12), // Let's randomly choose between some different files in the folder
+        ]) 
+    ).play(quant:1); 
+) 
  // four on the floor w/ some more variation because more than one sample
 
 ( 
@@ -61,7 +61,7 @@ Let's write the simplest thing that will make sound in SuperClean together:
             s: \mmd, 
             n: Pwhite(1,12), 
             dur: 1/Pwhite(5,11), 
-            rel: Pwhite(0.1,1), //Stochastically apply different release times for the amplitude envelope attack 
+            rel: Pwhite(0.1,1),  
             pan: Pwhite(0.0,1.0), //Stochastically apply panning
         ]) 
     ).play(quant:1); 
@@ -75,7 +75,7 @@ Let's write the simplest thing that will make sound in SuperClean together:
             n: Pwhite(1,12), 
             dur: 1/Pwhite(5,11), 
             rel: Pexprand(0.1,1), //exponentially apply attack times (lower times more likely)
-            pan: Pwhite(0.0,1.0), //Stochastically apply panning
+            pan: Pwhite(0.0,1.0), 
         ]) 
     ).play(quant:1); 
 )
@@ -126,8 +126,8 @@ Let's write the simplest thing that will make sound in SuperClean together:
         Pbind(*[ 
             type: \clean, 
             s: \mmd, 
-            n: Pwhite(0,6), // first half of the samples in the folder
-            dur: Pseq([1,1/2,1/2,1,1/4],inf)/2, // basic arithemic can be appplied to the pattern keys
+            n: Pwhite(0,6), 
+            dur: Pseq([1,1/2,1/2,1,1/4],inf)/2, // basic arithmetic can be appplied to the pattern keys
             rel: Pexprand(0.1,1), 
             pan: Pwhite(0.0,0.5), 
         ]) 
@@ -138,8 +138,8 @@ Let's write the simplest thing that will make sound in SuperClean together:
         Pbind(*[ 
             type: \clean, 
             s: \mmd, 
-            n: Pwhite(6,12), // second half of the samples in the folder 
-            dur: Pseq([1,1/2,1/2,1,1/4,1/4],inf)/2, // this one has one more 1/4, yielding polymeter
+            n: Pwhite(6,12), 
+            dur: Pseq([1,1/2,1/2,1,1/4,1/4],inf)/2, // this one has one more 1/4, yielding polymeter between the two patterns
             rel: Pexprand(0.1,1), 
             pan: Pwhite(0.5,1.0), 
         ]) 
@@ -154,7 +154,7 @@ Let's write the simplest thing that will make sound in SuperClean together:
         Pbind(*[ 
             type: \clean, 
             s: \mmd, 
-            n: 1, // set values are ok but maybe not as __fun__ as stochastic choices
+            n: 1, // set values are ok but maybe not as _fun_ as stochastic choices tho
             dur: 1/8,
             rel: Pexprand(0.0001,0.1), 
             pan: Pwhite(0.0,0.5), 
@@ -170,7 +170,7 @@ Let's write the simplest thing that will make sound in SuperClean together:
             dur: 1/8,
             rel: Pexprand(0.001,0.1), 
             pan: Pwhite(0.5,1.0), 
-            stretch: 1.001, // stretch time, this pattern slowly goes out of time and then back in time
+            stretch: 1.001, // stretch time, this pattern slowly phases with the other pattern
         ]) 
     ).play(quant:1); 
 )
@@ -193,7 +193,7 @@ Let's write the simplest thing that will make sound in SuperClean together:
 );
 ( 
     Pdef(\1, 
-        Pseed(124, // same number, same infinity of numbers in the ssame stream forever and ever
+        Pseed(124, // same number, same infinity of numbers in the same stream forever and ever
             Pbind(*[ 
                 type: \clean, 
                 s: \mmd, 
@@ -210,7 +210,7 @@ Let's write the simplest thing that will make sound in SuperClean together:
 
 ( 
     Pdef(\0, 
-        Pseed(124, // reevaluate to hear the same thing again
+        Pseed(124, // reEvaluate to hear the same thing again
             Pbind(*[ 
                 type: \clean, 
                 s: \mmd, 
@@ -237,7 +237,7 @@ Let's write the simplest thing that will make sound in SuperClean together:
                 pan: Pwhite(0.0,1.0), 
                 stretch: 1.001, 
                 lpf: Pwhite(20,20000), // compare these two versions, lower line takes precedence
-                lpf: Pexprand(20,20000), // exponential might suit your needs or no depending
+                lpf: Pexprand(20,20000), // exponential might suit your needs or not depending on how you feel about it
             ]) 
         )
         ).play(quant:1); 
@@ -289,7 +289,7 @@ Let's write the simplest thing that will make sound in SuperClean together:
                 s: \fmx, 
                 n: Pwhite(1,12), // all of the 12 pitches within the octave
                 dur: 1/8,
-                rel: Pkey(\dur), // parameters can listen to each other, data sharing is very useful 
+                rel: Pkey(\dur), 
                 pan: Pwhite(0.0,1.0), 
                 stretch: Pseg([0.5,1.0,0.5],10,\lin,inf), 
             ]) 
@@ -354,12 +354,12 @@ Let's write the simplest thing that will make sound in SuperClean together:
         Pseed(124, 
             Pbind(*[ 
                 type: \clean, 
-                s: \fmx, // change the numbers in  the array below to change the chord
+                s: \fmx, // change the numbers in the array below to change the chord
                 freq: 20*[2,4,6]*Pwhite(1,5), // higher numbers are freakier, 
                 dur: 1/8, 
                 rel: Pkey(\dur), 
                 pan: Pwhite(0.0,1.0), 
-                stretch: Pseg([0.75,1.0,0.75],10,\lin,inf), // slow it down a lil
+                stretch: Pseg([0.75,1.0,0.75],10,\lin,inf), 
             ]) 
         )
         ).play(quant:1); 
@@ -376,7 +376,7 @@ Let's write the simplest thing that will make sound in SuperClean together:
                 dur: 1/8, 
                 rel: Pkey(\dur)/2, // duration keyed and then divided by two 
                 pan: Pwhite(0.0,1.0), 
-                stretch: Pseg([0.75,1.0,0.75],10,\lin,inf), // slow it down a lil
+                stretch: Pseg([0.75,1.0,0.75],10,\lin,inf), 
             ]) 
         )
         ).play(quant:1); 
@@ -392,9 +392,9 @@ Let's write the simplest thing that will make sound in SuperClean together:
                 s: \fmx, 
                 freq: 20*[2,4,6]*Pwhite(1,5), 
                 dur: 1/8, 
-                rel: Pkey(\dur)/Prand([0.5,2],inf), // duration keyed and then twiced or halved stochastically
+                rel: Pkey(\dur)/Prand([0.5,2],inf), // duration keyed and then doubled or halved stochastically
                 pan: Pwhite(0.0,1.0), 
-                stretch: Pseg([0.75,1.0,0.75],10,\lin,inf), // slow it down a lil
+                stretch: Pseg([0.75,1.0,0.75],10,\lin,inf), 
             ]) 
         )
         ).play(quant:1); 
@@ -409,9 +409,9 @@ Let's write the simplest thing that will make sound in SuperClean together:
                 s: \fmx, 
                 freq: Pstutter(20,20*[2,4,6]*Pwhite(1,5)), // repeat each choice 20 times
                 dur: 1/8, 
-                rel: Pkey(\dur)/Prand([0.5,2],inf), // duration keyed and then twiced or halved stochastically
+                rel: Pkey(\dur)/Prand([0.5,2],inf), 
                 pan: Pwhite(0.0,1.0), 
-                stretch: Pseg([0.75,1.0,0.75],10,\lin,inf), // slow it down a lil
+                stretch: Pseg([0.75,1.0,0.75],10,\lin,inf), 
             ]) 
         )
         ).play(quant:1); 
@@ -427,9 +427,9 @@ Let's write the simplest thing that will make sound in SuperClean together:
                 s: \fmx, 
                 freq: Pstutter(Pwhite(1,20),20*[2,4,6]*Pwhite(1,5)), // repeat each choice 1 to 20 times
                 dur: 1/8, 
-                rel: Pkey(\dur)/Prand([0.5,2],inf), // duration keyed and then twiced or halved stochastically
+                rel: Pkey(\dur)/Prand([0.5,2],inf), 
                 pan: Pwhite(0.0,1.0), 
-                stretch: Pseg([0.75,1.0,0.75],10,\lin,inf), // slow it down a lil
+                stretch: Pseg([0.75,1.0,0.75],10,\lin,inf), 
             ]) 
         )
         ).play(quant:1); 
@@ -444,9 +444,9 @@ Let's write the simplest thing that will make sound in SuperClean together:
                 s: \fmx, 
                 freq: Pstutter(Pexprand(1,20),20*[2,4,6]*Pwhite(1,5)), // exponentially 1 to 20 times
                 dur: 1/8, 
-                rel: Pkey(\dur)/Prand([0.5,2],inf), // duration keyed and then twiced or halved stochastically
+                rel: Pkey(\dur)/Prand([0.5,2],inf), 
                 pan: Pwhite(0.0,1.0), 
-                stretch: Pseg([0.75,1.0,0.75],10,\lin,inf), // slow it down a lil
+                stretch: Pseg([0.75,1.0,0.75],10,\lin,inf), 
             ]) 
         )
         ).play(quant:1); 
@@ -462,9 +462,9 @@ Let's write the simplest thing that will make sound in SuperClean together:
                 rps: Pexprand(1,20), // roll your own params on the fly
                 freq: Pstutter(Pkey(\rps),20*[2,4,6]*Pwhite(1,5)), // use rps here
                 dur: 1/8, 
-                rel: Pkey(\dur)/Prand([0.5,2],inf), // duration keyed and then twiced or halved stochastically
+                rel: Pkey(\dur)/Prand([0.5,2],inf), 
                 pan: Pwhite(0.0,1.0), 
-                stretch: Pseg([0.75,1.0,0.75],10,\lin,inf), // slow it down a lil
+                stretch: Pseg([0.75,1.0,0.75],10,\lin,inf), 
             ]) 
         )
         ).play(quant:1); 
