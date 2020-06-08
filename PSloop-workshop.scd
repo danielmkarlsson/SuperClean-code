@@ -1,5 +1,5 @@
 (
-Pdef(\1,
+Pdef(\0,
 	Pbind(*[
 		dur: Pstutter(Pexprand(1,3,inf),Pn(Prand((1..9)/24),inf),inf),
 		type: \clean,
@@ -39,6 +39,13 @@ Pdef(\1,
         size: 0.94,
         dry: 0.8,
         lpf: Pexprand(20,20000),
+        pan: Pwhite(0.0,1.0),
     ])
 ).play(quant:1);
 )
+
+Pdef(\0).stop;
+
+// You need a couple of things for this code to work on your machine:
+// https://github.com/danielmkarlsson/SuperClean
+// https://github.com/dkmayer/miSCellaneous_lib
