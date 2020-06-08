@@ -49,3 +49,6 @@ Pdef(\0).stop;
 // You need a couple of things for this code to work on your machine:
 // https://github.com/danielmkarlsson/SuperClean
 // https://github.com/dkmayer/miSCellaneous_lib
+
+Quarks.install("https://github.com/danielmkarlsson/SuperClean.git");
+Quarks.install("https://github.com/dkmayer/miSCellaneous_lib.git");
