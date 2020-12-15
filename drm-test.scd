@@ -1,5 +1,5 @@
 (
-Pdef(0,
+Pdef(\0,
 	Pbind(*[
 		type: Pwrand([\cln,\rest],[6,1].normalizeSum,inf),
 		snd: \drm,

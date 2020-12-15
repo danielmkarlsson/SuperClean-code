@@ -1,5 +1,5 @@
 (
-Pdef(0,
+Pdef(\0,
 	Pbind(*[
 		type: \cln,
 		snd: \hex,
