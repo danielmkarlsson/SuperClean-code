@@ -8,7 +8,7 @@ Pdef(0,
 )
 
 // Why does the above work?
-// Within SuperCollider in general and in the Patterns paradigm in particular there are many defaults.
+// Within SuperCollider in general, and in the Patterns paradigm in particular, there are many defaults.
 
 (
 Pdef(0,
