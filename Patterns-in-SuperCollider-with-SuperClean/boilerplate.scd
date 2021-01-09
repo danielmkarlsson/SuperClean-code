@@ -19,3 +19,5 @@ Pdef(0, // A named pattern definition, the unique name, here 0, lets us refer to
 	]) // Closes out the Pbind, this syntax with the hard brackets uses less characters than some folks are used to.
 ).play; // Closes out the Pdef and plays the pattern, this is not be enough to get multiple patterns to play in sync.
 ) // Bottom outermost paranthesis, the botttom bound of this code block, not actually necessary but extremely convenient.
+
+
