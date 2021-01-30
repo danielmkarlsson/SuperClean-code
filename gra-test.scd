@@ -1,4 +1,4 @@
-~clean.orderModules(['wls', 'gra', 'env', 'lhf', 'shp', 'lpf','hpf']);
+~clean.orderModules(['gra', 'env', 'lhf', 'shp', 'lpf','hpf']);
 
 (
 Pdef(0,
@@ -29,7 +29,6 @@ Pdef(0,
 		lot: Pwhite(0.0,1.0),
 		hit: Pwhite(0.0,1.0),
 		lpf: Pexprand(20,20000),
-		wls: Pexprand(1,9)-1,
 		lhf: Pwhite(0.0,1.0),
 	])
 ).play(quant:1);
