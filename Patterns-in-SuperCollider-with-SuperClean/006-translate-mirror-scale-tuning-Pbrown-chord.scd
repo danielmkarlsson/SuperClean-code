@@ -15,7 +15,7 @@ Pdef(\0,
         lpf: Pexprand(50, 5000).round(50).trace, // exponential stochastic choice rounded to nearest multiple of 50 with .round 
         lpq: Pkey(\lpf).explin(25, 5000, 1, 0), // the q of the lpf is derived from the frquency of the filter, lower freq = higher resonance
         crv: Pkey(\dur).explin(1/16, 1, -8, 8), // the curvature of envelope derived from \dur, note exponential to linear here
-        rel: 8 * Pkey(\dur).explin(1/16, 1, 0.5, 1), the release of the envelope is Pkeyed in from the duration
+        rel: 8 * Pkey(\dur).explin(1/16, 1, 0.5, 1), // the release of the envelope is Pkeyed in from the duration
         atk: Pkey(\rel) / Pexprand(1, 8), // rel is keyed from atk, then divided by exponentially by floats between 1 and 8
         sustain: 8 * Pkey(\dur).explin(1/16, 1, 0.5, 1), // follws the same idea, resulting in long sustains for for long durations
         shp: Pwhite(0.0, 0.5),
@@ -26,7 +26,7 @@ Pdef(\0,
 ).play
 )
 
-// try these to do all kinds of different translations of value ranges
+// try these to make all kinds of different translations of value ranges
 .linlin
 .linexp
 .expexp
@@ -65,16 +65,14 @@ midinote: Pseq((0 .. 4).mirror, inf).trace,
 midinote: Pseq((0 .. 4).mirror1, inf)
 midinote: Pseq((0 .. 4).mirror2, inf)
 
-
 .mirror
 .mirror1
 .mirror2
 
-
-
 // evaluate this to see a list of tunings
 Tuning.directory
 
+// make an interval by having two sequences running at the same time
 (
 Pdef(0,
 	Pbind(*[
@@ -88,9 +86,7 @@ Pdef(0,
 		sustain: 2,
 	])
 ).play(quant:1);
-)
 
-(
 Pdef(1,
 	Pbind(*[
 		type: \cln,
@@ -103,6 +99,11 @@ Pdef(1,
 		sustain: 2,
 	])
 ).play.play(quant:1);
+)
+
+(
+Pdef(0).stop;
+Pdef(1).stop;
 )
 
 (
