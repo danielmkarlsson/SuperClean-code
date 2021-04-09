@@ -1,7 +1,6 @@
 /*
 I started off by talking about Sonobus which I got working sharing high quality sound between two computers
-over the internet.
-Please install this and try it out on your machine:
+over the internet. Please install this and try it out on your machine:
 
 https://sonobus.net/
 
@@ -15,7 +14,7 @@ On a low level we could do this kind of thing with rests and finite pattern stre
 (
 Pdef(0,
 	Pbind(*[
-		type: Pseq([\cln, \r, \r], 1), // \r for rest, write it out like this if you prefer; \rest
+		type: Pseq([\cln, \r, \r], 1), // \r for rest, write it out like this if you prefer: \rest
 		amp: 0.65,
 		snd: \sin,
 	])
@@ -64,6 +63,7 @@ Pdef(1,
 		dur: 1/5,
 		pan: 0,
 		amp: 0.6,
+		tempo: 1,
 	])
 );
 Pdef(2,
@@ -74,6 +74,7 @@ Pdef(2,
 		dur: 1/7,
 		pan: 1,
 		amp: 0.575,
+		tempo: 1,
 	])
 );
 Pdef(3,
@@ -89,7 +90,7 @@ Pdef(3,
 
 Form is something we perceive. It exists in each of our minds. I think of it as relationships between musical
 material. Some kind of connectivity is needed. Let's take a look at how we can use Pseed as a shared data
-stream and show how we can send MIDI note data to Reaper over the IAC bus. Please contact me in the Element
+stream and also show how we can send MIDI note data to Reaper over the IAC bus. Please contact me in the Element
 chat if you'd like to take a look at your configuration to get the example below working in sync. The main
 thing is to set s.latency and m.latency to the same value in your startup.scd
 I use 0.3 for both. Please open Pseed-as-shared-data-stream.rpp before running the below example.
@@ -135,18 +136,207 @@ CmdPeriod.doOnce { // this is _really_ handy when working with MIDI
 
 /*
 
+I often want to generate one stream of numbers and have many Pdefs reading from it. The Pdefs will kindly ask for the next
+number and recieve their unique number. This is not a duplication of a number given to some other Pdef. It is the next number
+in a stream of numbers.
+
+*/
+
+(
+~degree = Pseq((0 .. 7).mirror1, inf).asStream; // we've seen ~ before, when we've loaded in sound files
+~octave = Pseq((4 .. 7).mirror1, inf).asStream; // this character is called tilde
+~mtranspose = Pseq((0 .. 4).mirror1, inf).asStream; // it is used here as an environment variable
+~scale = Pstutter(Pexprand(8, 16), Pseq([
+    Scale.major.tuning_(Tuning.sept1),
+    Scale.minor.tuning_(Tuning.sept1),
+    Scale.harmonicMinor.tuning_(Tuning.sept1),
+    Scale.aeolian.tuning_(Tuning.sept1),
+    Scale.locrian.tuning_(Tuning.sept1),
+    Scale.mixolydian.tuning_(Tuning.sept1),
+].mirror1, inf)).asStream;
+~pan = Pseq((0.0, 0.025 .. 1).mirror1, inf).asStream; // but most folks happily call these global variables
+//~pan = Pseq([0, 1], inf).asStream; // enable for single speaker multichan
+~aux = Pxshuf((0 .. 3), inf).asStream; // they can communicate outside the scope of a Pdef or even different .scd files
+
+Pdef(0,
+    Pbind(*[
+        type: \cln,
+        snd: \kps,
+        amp: Pstutter(Pexprand(1, 3), Pexprand(1.5, 3.5)),
+        scale: Pfunc({~scale}), // here on the recieving end we need to wrap our global variable in a Pfunc
+		octave: Pfunc({~octave}), // Pfunc as in a function, not Parliament's Mothership connection kind of Pfunk
+        degree: Pfunc({~degree}), // this is bringing in a tiny bit of another paradigm of writing things with functions in sc
+		pan: Pfunc({~pan}), // this is usually where we end up if we want something very esoteric. "Roll your own in a Pfunc"
+        mtranspose: Pfunc({~mtranspose}),
+        //aux: Pfunc({~aux.next}),
+        dur: 3,
+        atk: Pexprand(0.01, 0.03) - 0.01,
+        rel: 1 * Pkey(\dur).linexp(1, 7, 2, 1),
+        sustain: 1 * Pkey(\dur).linexp(1, 7, 8, 2),
+        tempo: Pstutter(Prand([6, 12, 18, 24], inf), Pseq([1.5, 2.25, 2, 5.75, 2.5, 4.25, 4.0, 5.75, 5.5].reverse, inf)).trace,
+        lhf: Pexprand(0.15, 0.25),
+        hpf: 400,
+    ])
+).play(quant: 1);
+
+Pdef(1,
+    Pbind(*[
+        type: \cln,
+        snd: \kps,
+        amp: Pstutter(Pexprand(1, 3), Pexprand(1.5, 3.5)),
+        scale: Pfunc({~scale}),
+        octave: Pfunc({~octave}),
+        degree: Pfunc({~degree}),
+        pan: Pfunc({~pan}),
+        mtranspose: Pfunc({~mtranspose}),
+        //aux: Pfunc({~aux.next}),
+        dur: 4,
+        atk: Pexprand(0.01, 0.03) - 0.01,
+        rel: 2 * Pkey(\dur).linexp(1, 7, 2, 1),
+        sustain: 2 * Pkey(\dur).linexp(1, 7, 8, 2),
+        lhf: Pexprand(0.15, 0.25),
+        hpf: 400,
+    ])
+).play(quant: 1);
+
+Pdef(2,
+    Pbind(*[
+        type: \cln,
+        snd: \kps,
+        amp: Pstutter(Pexprand(1, 3), Pexprand(1.5, 3.5)),
+        scale: Pfunc({~scale}),
+        octave: Pfunc({~octave}),
+        degree: Pfunc({~degree}),
+        pan: Pfunc({~pan}),
+        mtranspose: Pfunc({~mtranspose}),
+        //aux: Pfunc({~aux.next}),
+        dur: 5,
+        atk: Pexprand(0.01, 0.03) - 0.01,
+        rel: 3 * Pkey(\dur).linexp(1, 7, 2, 1),
+        sustain: 3 * Pkey(\dur).linexp(1, 7, 8, 2),
+        lhf: Pexprand(0.15, 0.25),
+        hpf: 400,
+    ])
+).play(quant: 1);
+
+Pdef(3,
+    Pbind(*[
+        type: \cln,
+        snd: \kps,
+        amp: Pstutter(Pexprand(1, 3), Pexprand(1.5, 3.5)),
+        scale: Pfunc({~scale}),
+        octave: Pfunc({~octave}),
+        degree: Pfunc({~degree}),
+        pan: Pfunc({~pan}),
+        mtranspose: Pfunc({~mtranspose}),
+        //aux: Pfunc({~aux.next}),
+        dur: 6,
+        atk: Pexprand(0.01, 0.03) - 0.01,
+        rel: 4 * Pkey(\dur).linexp(1, 7, 2, 1),
+        sustain: 4 * Pkey(\dur).linexp(1, 7, 8, 2),
+        lhf: Pexprand(0.15, 0.25),
+        hpf: 400,
+    ])
+).play(quant: 1);
+
+Pdef(4,
+    Pbind(*[
+        type: \cln,
+        snd: \kps,
+        amp: Pstutter(Pexprand(1, 3), Pexprand(1.5, 3.5)),
+        scale: Pfunc({~scale}),
+        octave: Pfunc({~octave}),
+        degree: Pfunc({~degree}),
+        pan: Pfunc({~pan}),
+        mtranspose: Pfunc({~mtranspose}),
+        //aux: Pfunc({~aux.next}),
+        dur: 7,
+        atk: Pexprand(0.01, 0.03) - 0.01,
+        rel: 5 * Pkey(\dur).linexp(1, 7, 2, 1),
+        sustain: 5 * Pkey(\dur).linexp(1, 7, 8, 2),
+        lhf: Pexprand(0.15, 0.25),
+        hpf: 400,
+    ])
+).play(quant: 1);
+
+Pdef(5,
+    Pbind(*[
+        type: \cln,
+        snd: \kps,
+        amp: Pstutter(Pexprand(1, 3), Pexprand(1.5, 3.5)),
+        scale: Pfunc({~scale}),
+        octave: Pfunc({~octave}),
+        degree: Pfunc({~degree}),
+        pan: Pfunc({~pan}),
+        mtranspose: Pfunc({~mtranspose}),
+        //aux: Pfunc({~aux.next}),
+        dur: 8,
+        atk: Pexprand(0.01, 0.03) - 0.01,
+        rel: 6 * Pkey(\dur).linexp(1, 7, 2, 1),
+        sustain: 6 * Pkey(\dur).linexp(1, 7, 8, 2),
+        lhf: Pexprand(0.15, 0.25),
+        hpf: 400,
+    ])
+).play(quant: 1);
+)
+
+// try stopping these one at a time
+Pdef(0).stop;
+Pdef(1).stop;
+Pdef(2).stop;
+Pdef(3).stop;
+Pdef(4).stop;
+Pdef(5).stop;
+
+// an example using bow which is a digital wave guide physical model of a bowed instrument
+(
+var a = Pwhite(0.0, 0.25).asStream; // you could do a similar thing as above, but with variables
+var b = Pwhite(0.75, 1.0).asStream; // what if we wanted to use both these variables on the same key?
+Pdef(0,
+	Pseed(263,
+		Pbind(*[
+			type: \cln,
+			snd: \bow,
+			frc: Pexprand(0.1, 1.0),
+			pos: Pexprand(0.07, 0.7),
+			octave: Pstutter(Pexprand(1, 5), Pxrand((1 .. 6), inf)),
+			scale: Scale.aeolian.tuning_(Tuning.vallotti),
+			degree: Pstutter(Pexprand(1, 5), Pxrand((0 .. 7), inf)),
+			mtranpose: Pstutter(Pexprand(1, 5), Pxrand((-11 .. 3), inf)),
+			amp: Pstutter(2, Pexprand(0.444, 0.66666 / Pkey(\octave).linexp(1, 6, 1, 2))),
+			atk: Pexprand(1.0, 15.0) - 1,
+			hld: Pwhite(0.5, 4.0),
+			rel: Pwhite(5.0, 10.0),
+			crv: Pwhite(0.0, 8.0) - Prand([0, 8], inf),
+			sustain: Pexprand(19.0, 60.0),
+			legato: Pexprand(19.0, 60.0),
+			pan: Pseq([Pfuncn({ a.next }, 1), Pfuncn({ b.next }, 1)], inf).trace, // Pfunc let's us weave together two vars
+			lhf: Pexprand(0.25, 0.75), // .next moves things along on the recieving end
+			bpr: Pseg([1, 1/256], Pwhite(30, 90), \sine, inf),
+			dur: 1 / Pwrand2([1/4, 1/2, 1, 2, 4, 5], [8, 6, 4, 2, 1, 1/2], inf),
+			dla: 1/64,
+			dlf: 0,
+			dlt: 16,
+			dark: 1/16,
+		])
+	)
+).play(quant:1);
+)
+
+/*
+
 Next we took a look at the docs:
 
 http://doc.sccode.org/Classes/Event.html
 
 Down at the bottom there is a nice picture. The docs can sometimes feel frustrating. A nice picture
-really helps. Not all of those keys in that picture work inside of SuperClean because of reasons.
-Please look at
+can really help. Not all of those keys in that picture work inside of SuperClean because of reasons.
+For more information about this, please look at:
 
 superclean-parameter-names-and-value-ranges.scd
 
-for more information about this. All of the keys in that picture are convenient but we can perform all of
-those actions on those number values ourselves. Sometimes that can be hard tho. Let's start with an easy one.
+All of the keys in that picture are convenient but we can perform all of those actions on those number
+values ourselves. Sometimes that can be hard tho. Let's start with an easy one.
 
 */
 
@@ -156,10 +346,10 @@ Pdef(0,
 	Pbind(*[
 		type: \cln,
 		snd: \fmx,
-		dur: 1/8,
+		dur: 1/8, //Pn allows us to ask for an infinite amount of values for the finite Pseries within it
 		midinote: Pn(Pseries(60, 2, 5), inf) + 1, // change this number after the +
 		//ctranspose: Pn(Pseries(0, 2, 5), inf) + 1, // uncomment the above line and try ctranspose
-		tempo: 1,
+		tempo: 1, // Pseries counts upward, takes inital value, next value (step size) and amount
 		amp: 1,
 	])
 ).play
@@ -167,8 +357,8 @@ Pdef(0,
 
 /*
 
-\root is not available in SuperClean because reasons but you can use ctranspose as a dropin replacement
-Another convenient key that is available is \harmonic which is handy way of getting at the harmonic series
+\root is not available in SuperClean because reasons, but you can use Ctranspose as a dropin replacement.
+Another convenient key that is available is \harmonic which is a handy way of getting at the harmonic series,
 which can yield some really pure intervals at lower values and some delicious salty goodness at higher values.
 
 */
@@ -187,7 +377,6 @@ Pdef(0,
 		])
 ).play
 )
-
 
 /*
 
@@ -234,7 +423,7 @@ Pdef(0,
 	Pbind(*[
 		type: \cln,
 		snd: \fmx,
-		dur: 1/8,
+		dur: 1/7,
 		degree: Pseq((0 .. 7), inf),
 		amp: 1,
 		stepsPerOctave: Pwhite(1,12), // ¿ What the hey now ?
@@ -245,9 +434,12 @@ Pdef(0,
 
 /*
 
-I made a lil post on my site about \stn which is a little sample pack that I recorded. I recorded it in 192 khz
-which lets me play it back at a lot lower speed without as many of the kinds of lofi artefacts we usually
-get when playing back samples recorded at 44.1
+I made a lil post on my site about \stn which is a little sample pack that I recorded.
+
+https://danielmkarlsson.com/log/
+
+I recorded it in 192 khz which lets me play it back at a lot lower speed without as many of the kinds of
+lofi artefacts we usually get when playing back samples recorded at 44.1
 
 */
 
@@ -284,13 +476,13 @@ Pdef(0,
 /*
 
 Plprand is low passed random. This makes it tend towards it's low value. The distribution is a different
-flavour in comparison to Pexprand. Also not that in the example above we pass through zero in the value range
+flavour in comparison to Pexprand. Also note that in the example above we pass through zero in the value range
 for Plprand. This would not have been possible with Pexprand. There's also Phprand which is high passed random.
 This makes it tend towards it's high value.
 
 The homework assignment for next week, like it is every week, is to go throught the material and use as many
-of the new words as you can from what we covered today to get a feel for how you can benefit from them in
-your own practce. Also I want you to try The Quincy Jones Trick which is to record a sample at a higher sample
+of the new words as you can from what we covered today, to get a feel for how you can benefit from them in
+your own practice. Also I want you to try The Quincy Jones Trick, which is to record a sample at a higher sample
 rate and then to play it back at a lower \spd
 
 /*
