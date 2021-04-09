@@ -93,7 +93,7 @@ material. Some kind of connectivity is needed. Let's take a look at how we can u
 stream and also show how we can send MIDI note data to Reaper over the IAC bus. Please contact me in the Element
 chat if you'd like to take a look at your configuration to get the example below working in sync. The main
 thing is to set s.latency and m.latency to the same value in your startup.scd
-I use 0.3 for both. Please open Pseed-as-shared-data-stream.rpp before running the below example.
+I use 0.3 for both. Please open 007-Pseed-as-shared-data-stream.rpp before running the below example.
 
 */
 
