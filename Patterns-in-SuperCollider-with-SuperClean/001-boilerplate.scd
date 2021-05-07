@@ -25,5 +25,5 @@ Pdef(0,
 		type: \cln,
 		snd: \mmd,
 	])
-).play(quant:1;
+).play(quant:1);
 )
