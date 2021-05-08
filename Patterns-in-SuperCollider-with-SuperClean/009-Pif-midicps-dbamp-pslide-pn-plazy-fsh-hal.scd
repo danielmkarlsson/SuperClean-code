@@ -98,10 +98,9 @@ Pdef(0,
 ).play // we can use Pn as a wraparound to make something finite to become infinite
 ) // It's like Pn wakes Pslide up and says "one more pattern" every time Pslide tries to go to sleep
 
-// Ever tried sequencing a bunch of stochastic patterns objects? Here's how to not get stuck on the first stochastic pattern object
+// Have you ever tried sequencing a bunch of stochastic patterns objects? Here's how to not get stuck on the first stochastic pattern object
 (
-var a = Phprand(1, 4).asStream; // These are variables  a and b, you can call tehm anything you, no spaces tho
-var b = Plprand(2, 5).asStream;
+ 
 Pdef(0,
 	Pseed(173,
 		Pbind(*[
