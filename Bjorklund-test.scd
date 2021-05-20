@@ -40,5 +40,5 @@ Pdef(2,
 )
 
 Quarks.install("https://github.com/ffforces/Pwrand2");
-Quarks.install("https://github.com/supercollider-quarks/Bjorklund);
+Quarks.install("https://github.com/supercollider-quarks/Bjorklund");
 Quarks.install("https://github.com/davidgranstrom/Pxshuf");
