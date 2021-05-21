@@ -151,7 +151,7 @@ rin:
 tnh:
 
 // Global effects receive the summed signal of all of our samples and synths.
-// This is in contrast to per event effects like lpf and shp which are applied per event.
+// This is in contrast to per event effects like lpf and shp which are applied in series.
 // Global effects are applied in parallel, each on their own, and then sent out on the aux we choose.
 
 (
