@@ -151,7 +151,7 @@ rin:
 tnh:
 
 // Global effects receive the summed signal of all of our samples and synths.
-// This is in contrast to per event effects like lpf and shp which are applied in series.
+// This is in contrast to per event effects like lpf and shp which are applied per event.
 // Global effects are applied in parallel, each on their own, and then sent out on the aux we choose.
 
 (
@@ -165,7 +165,7 @@ tnh:
 ~clean.orderModules(['lpf', 'shp']) // You could change the order on just two effects.
 ~clean.orderModules(['shp', 'lpf']) // Flip 'em back and forth to listen and decide which you prefer for your music.
 
-// You could use DayTimer to sequence Pdefs, maybe for a show, or an installation, turn them on or off on a schedule.
+// You could use DayTimer to sequence Pdefs at specific times, maybe for a show, or an installation, turn them on or off on a schedule.
 // This could be a homework.
 
 // You could use DayTimer to sequence turning Pdefs on or off stochastically very often, to make a kind of stochastic form.
