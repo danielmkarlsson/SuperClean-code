@@ -58,5 +58,3 @@ Pdef(0,
 	)
 ).play
 )
-
-Gverb
