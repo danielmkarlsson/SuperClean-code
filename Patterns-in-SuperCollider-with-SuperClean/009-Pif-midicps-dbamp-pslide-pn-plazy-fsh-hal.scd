@@ -24,6 +24,19 @@ Pdef(0,
 ).play
 )
 
+(
+Pdef(0,
+	Pbind(*[
+		type: \cln,
+		snd: \sin,
+		dur: 1/5,
+		degree: Pstutter(2, Pwrand2((0 .. 4), (1 .. 5), inf)),
+		cav: 1,
+		amp: 0.6,
+		cai: Pfunc { |e| [0].includes(e[\degree]).if { 1 } { 0 } }.trace,
+	])
+).play
+)
 
 (
 Pdef(0,
