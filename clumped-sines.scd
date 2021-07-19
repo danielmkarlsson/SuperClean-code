@@ -1,5 +1,5 @@
 ([100, 200, 300] +.x [10, 30, 50, 70, 90] *.x [1, 2, 3, 4, 5, 6, 7]).postcs // .postcs posts the whole array.
-// Make freq array from "Adverbs for Binary Operator" technique.
+// Make freq array using "Adverbs for Binary Operator" technique.
 
 (
 Pdef(0,
