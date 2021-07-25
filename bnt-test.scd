@@ -3,7 +3,7 @@ Pdef(0,
 	Pbind(*[
 		type: Pwrand2([\cln, \r], [1, 2], inf),
 		rps: Plprand(5, 11),
-		snd: Pwrand2([\sin, \saw, \sqr, \kps], [8, 4, 2, 1], inf),
+		snd: Pwrand2([\sin, \saw, \sqr, \kps], [4, 3, 2, 1], inf),
 		dur: 1 / Pstutter(Pkey(\rps), Plprand(1, 5)),
 		bnd: Pstutter(Pkey(\rps), Plprand(0.0, 1.0).round(1/7)),
 		octave: Pmeanrand(3, 8),
