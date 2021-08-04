@@ -23,12 +23,12 @@ Pdef(0,
 (
 Pdef(0,
 	Pbind(*[
-		dur: 1 / Pstutter(8, Pwhite(3, 5)),
+		dur: 1 / Pdup(8, Pwhite(3, 5)),
 	])
 ).play
 )
 // A stranger on a forum can then edit your minimal vanillized code and answer:
-// "How about you try Pstutter?"
+// "How about you try Pdup?"
 
 // Update SuperClean now to try the below feature which is new at the time of writing.
 
@@ -84,7 +84,7 @@ Pdef(0,
 	Pbind(*[
 		type: Pwrand2([\cln, \r], [4, 1], inf),
 		snd: Pwrand2([\drm, \dfd], [2, 1], inf),
-		tun: Pstutter(8 ,Plprand(-4.0, 8.0).round(0.25)),
+		tun: Pdup(8 ,Plprand(-4.0, 8.0).round(0.25)),
 		dur: 1/8,
 		octave: Plprand(3, 6),
 		fed: Plprand(0.0, 1.0),
@@ -113,7 +113,7 @@ Pdef(0,
 	Pbind(*[
 		type: Pwrand2([\cln, \r], [4, 1], inf),
 		snd: Pwrand2([\drm, \dfd], [2, 1], inf),
-		tun: Pstutter(8 ,Plprand(-4.0, 8.0).round(0.25)),
+		tun: Pdup(8 ,Plprand(-4.0, 8.0).round(0.25)),
 		dur: 1/8,
 		octave: Plprand(3, 6),
 		fed: Plprand(0.0, 1.0),
@@ -192,7 +192,7 @@ Pdef(0,
         type: \cln,
         snd: \drm,
         rps: Pexprand(4, 8),
-		dur: (Pstutter(Pkey(\rps), Pbjorklund2(Pxshuf([7, 9, 11, 13, 15], inf), 16, inf)) / 8).trace,
+		dur: (Pdup(Pkey(\rps), Pbjorklund2(Pxshuf([7, 9, 11, 13, 15], inf), 16, inf)) / 8).trace,
 		//dur: Pbjorklund2(3, 8, inf) / 8, // comment out this line for more variation
         amp: Pexprand(0.1, 3.0),
 		//amp: 0.75, // comment out this line for more variation
