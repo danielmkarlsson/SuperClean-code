@@ -1,4 +1,4 @@
-// Pstutter (repeat values)
+// Pdup (repeat values)
 (
 Pdef(0,
     Pbind(*[
@@ -6,7 +6,7 @@ Pdef(0,
         snd: \fmx,
         dur: 1/8,
         amp: Pseq([1/8, 2/8, 3/8, 4/8, 5/8, 6/8, 7/8, 1], inf),
-        freq: 40 * Pstutter(8, Pseq([1, 2, 3, 4], inf)),
+        freq: 40 * Pdup(8, Pseq([1, 2, 3, 4], inf)),
     ])
 ).play(quant:1);
 )
