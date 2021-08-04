@@ -14,10 +14,10 @@ Pdef(0,
 		shp: Pwhite(0.0, 1.0),
 		lhf: Pwhite(0.25, 0.75),
 		amp: Pseq((0.0, 0.05 .. 0.5) ++ (0.45, 0.4 .. 0.05), inf).trace,
-		stretch: Pseq((0.1, 0.2 .. 1.0) ++ (0.9, 0.8 .. 0.2), inf) / Pstutter(Plprand(6, 19),Pwhite(1.0, 4.0)),
+		stretch: Pseq((0.1, 0.2 .. 1.0) ++ (0.9, 0.8 .. 0.2), inf) / Pdup(Plprand(6, 19),Pwhite(1.0, 4.0)),
 		dla: 0.7,
 		dlf: 0.94,
-		dlt: 1/32 / Pstutter(Plprand(0, 5),Pif(Pkey(\amp) < 0.25, Prand((8, 10 .. 20), inf), Prand((1, 3 .. 7), inf))), //Pif, new vocabulary
+		dlt: 1/32 / Pdup(Plprand(0, 5),Pif(Pkey(\amp) < 0.25, Prand((8, 10 .. 20), inf), Prand((1, 3 .. 7), inf))), //Pif, new vocabulary
 		// if amp is below 0.5 choose even divisors 8 to 20, if amp above 0.5 choose uneven divisors 1 to 7
 		dark: 0.5,
 	])
@@ -30,7 +30,7 @@ Pdef(0,
 		type: \cln,
 		snd: \sin,
 		dur: 1/5,
-		degree: Pstutter(2, Pwrand2((0 .. 4), (1 .. 5), inf)),
+		degree: Pdup(2, Pwrand2((0 .. 4), (1 .. 5), inf)),
 		cav: 1,
 		amp: 0.6,
 		cai: Pfunc { |e| [0].includes(e[\degree]).if { 1 } { 0 } }.trace,
@@ -60,7 +60,7 @@ Pdef(0,
 		snd: Pwrand2([\drm, \hat], [4, 1], inf),
 		pew: Phprand(0.5, 1.0),
 		fed: Plprand(0.0, 1.0),
-		tun: Pstutter(8, Plprand(2.0, 7.0)),
+		tun: Pdup(8, Plprand(2.0, 7.0)),
 		rel: Plprand(0.0, 1.0) * Pseg([1, 4], 30, \wel, inf),
 		sustain: Plprand(2.5, 5.0),
 		crv: -8,
@@ -129,10 +129,10 @@ Pdef(0,
 			rel: Phprand(1.0, 10.0) * Pkey(\stretch),
 			amp: Plprand(0.225, 0.75),
 			pan: Pmeanrand(0.0, 1.0),
-			hr1: Pstutter(Pkey(\rps) / 2, Plprand(0, 5)),
-			hr2: Pstutter(Pkey(\rps) / 2, Plprand(0, 5)),
-			hr3: Pstutter(Pkey(\rps) / 2, Plprand(0, 5)),
-			hr4: Pstutter(Pkey(\rps) / 2, Plprand(0, 5)),
+			hr1: Pdup(Pkey(\rps) / 2, Plprand(0, 5)),
+			hr2: Pdup(Pkey(\rps) / 2, Plprand(0, 5)),
+			hr3: Pdup(Pkey(\rps) / 2, Plprand(0, 5)),
+			hr4: Pdup(Pkey(\rps) / 2, Plprand(0, 5)),
 			en1: Phprand(0.0, 5.0),
 			en2: Phprand(0.0, 5.0),
 			en3: Phprand(0.0, 5.0),
@@ -141,13 +141,13 @@ Pdef(0,
 			mi1: Plprand(0, 10),
 			mi2: Plprand(0, 10),
 			mi3: Plprand(0, 10),
-			cu1: Pstutter(Pkey(\rps) / 4, Plprand(-8.0, 8.0)),
-			cu2: Pstutter(Pkey(\rps) / 4, Plprand(-8.0, 8.0)),
-			cu3: Pstutter(Pkey(\rps) / 4, Plprand(-8.0, 8.0)),
-			cu4: Pstutter(Pkey(\rps) / 4, Plprand(-8.0, 8.0)),
-			scale: Pstutter(Pkey(\rps), Pseq([Scale.major.tuning_(Tuning.vallotti), Scale.minor.tuning_(Tuning.vallotti)], inf)).trace, // New place to put a .trace, the post window get's real busy
-			octave: Pstutter(Pkey(\rps), Pseq([Pfuncn({ a.next }, 1), Pfuncn({ b.next }, 1)], inf)), // The n in Pfuncn is for number
-			mtranspose: Pstutter(Pkey(\rps), Plprand(-4, 4)), // Above  we make just one stochastic choice in a and then move on to b
+			cu1: Pdup(Pkey(\rps) / 4, Plprand(-8.0, 8.0)),
+			cu2: Pdup(Pkey(\rps) / 4, Plprand(-8.0, 8.0)),
+			cu3: Pdup(Pkey(\rps) / 4, Plprand(-8.0, 8.0)),
+			cu4: Pdup(Pkey(\rps) / 4, Plprand(-8.0, 8.0)),
+			scale: Pdup(Pkey(\rps), Pseq([Scale.major.tuning_(Tuning.vallotti), Scale.minor.tuning_(Tuning.vallotti)], inf)).trace, // New place to put a .trace, the post window get's real busy
+			octave: Pdup(Pkey(\rps), Pseq([Pfuncn({ a.next }, 1), Pfuncn({ b.next }, 1)], inf)), // The n in Pfuncn is for number
+			mtranspose: Pdup(Pkey(\rps), Plprand(-4, 4)), // Above  we make just one stochastic choice in a and then move on to b
 			degree: Pn(Pslide((0 .. 7), inf, Pwhite(2, 4), Pwhite(1, 3), 0, true), inf), // you may not have been aware of this happening
 			hal: Pseg(Pwhite(0.0, 1.0), Pwhite(10.0, 20.0), \lin, inf), // It's a sneaky silent error, everything seems fine
 			rts: Pseg(Plprand(0, 2.0), Pwhite(10.0, 20.0), \lin, inf), // no error message, sound coming out, what could be wrong?
@@ -206,7 +206,7 @@ Pdef(0,
 		crv: Pwhite( -8, -3),
 		sustain: 16,
 		lhf: Pwhite(0.125, 0.875),
-		//dark: Pstutter(Plprand(9,99), Prand([0, 0.1], inf)), // dark is a one-trick but wow, what a trick, never get's old.
+		//dark: Pdup(Plprand(9,99), Prand([0, 0.1], inf)), // dark is a one-trick but wow, what a trick, never get's old.
 		hal: 1, // hal has some more parameters. Here's kind of the opposite which is a very bright, tinny, reverb.
 		rts: 4.0, // Length of reverb
 		ldf: 1, // late diffusion
