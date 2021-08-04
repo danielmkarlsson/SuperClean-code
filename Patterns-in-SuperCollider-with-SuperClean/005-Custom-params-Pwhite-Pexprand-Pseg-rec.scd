@@ -7,7 +7,7 @@ Pdef(0,
         crv: -8,
         rps: Pwrand2((1 .. 33), (33 .. 1), inf), // made up parameter name, can be anything, calculates a value
 		seg: Pwhite(5, 11), // this is another parameter I made up, you can do it too, try it
-        dur: 1 / Pstutter(Pwrand2((1 .. 33), (33 .. 1), inf), Prand([5, 7, 9, 11], inf)), // reference any parameter above this line with Pkey
+        dur: 1 / Pdup(Pwrand2((1 .. 33), (33 .. 1), inf), Prand([5, 7, 9, 11], inf)), // reference any parameter above this line with Pkey
 		aux: Pxshuf((0 .. 32), inf), // uncomment this line to send audio spread out across 64 channels (needs startup.scd config)
 		freq: Prand((1, 1.001 .. 10000), inf), // this is a clunky way to choose floats between 1 and 10000, don't do it
 		freq: Pwhite(1, 10000), // unweighted choice of integers between 1 and 10000
@@ -26,7 +26,7 @@ Pdef(0,
 	Pbind(*[
 		type: \cln,
 		snd: \kps,
-		dur: 1 / Pstutter(Pwhite(5, 11), Pwhite(5, 11)),
+		dur: 1 / Pdup(Pwhite(5, 11), Pwhite(5, 11)),
 		amp: Pseg(Pwhite(0.0, 2.0), Pwhite(5.0, 10.0), \exp, inf).trace, // interpolate smoothly between amp values exponentially over stochastic time values
 		freq: Pseg([100, 200, 200, 100], [10, 5, 10], \exp, inf), // linear sequence of values interpolated to over a linear sequene of times
 		lpf: Pseg(Pexprand(20, 20000), 2.5, \exp, inf), // exponential choice of value with a single fixed time for every interpolaton
