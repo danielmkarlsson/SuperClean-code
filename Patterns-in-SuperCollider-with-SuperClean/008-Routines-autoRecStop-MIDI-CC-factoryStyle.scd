@@ -108,7 +108,7 @@ Pdef(0,
 		Pbind(*[
 			type: \cln,
 			snd: \mmd,
-			dur: 1 / Pstutter(Pwhite(5, 11), Pwhite(5, 11)),
+			dur: 1 / Pdup(Pwhite(5, 11), Pwhite(5, 11)),
 			num: Pwhite(0, 12),
 			pan: Pwhite(0.0, 1.0),
 			amp: 1,
@@ -125,7 +125,7 @@ Pdef(1,
 			chan: 0,
 			midiout: m,
 			ctlNum: 10,
-			dur: 1 /Pstutter(Pwhite(5, 11), Pwhite(5, 11)),
+			dur: 1 /Pdup(Pwhite(5, 11), Pwhite(5, 11)),
 			control: Pwhite(0, 127),
 			pan: Pwhite(0.0, 1.0), // Needed for symmetry with Pdef(0)
 		])
@@ -141,7 +141,7 @@ Pdef(0,
 		Pbind(*[
 			type: \cln,
 			snd: \mmd,
-			dur: 1 / Pstutter(Pwhite(5, 11), Pwhite(5, 11)),
+			dur: 1 / Pdup(Pwhite(5, 11), Pwhite(5, 11)),
 			num: Pwhite(0, 12),
 			pan: Pwhite(0.0, 1.0),
 			amp: 1,
@@ -160,7 +160,7 @@ Pdef(0,
 		chan: 0, // Static value. All of the events generated will be on channel zero
 		ctlNum: ctlNum, // Here's an input for which controller number, generated in argument 2 in th Pdefs below
 		control: ccVal, // The input for the contrl value, generated in argument 3 in th Pdefs below
-		dur: 1 / Pstutter(Pwhite(5, 11), Pwhite(5, 11)), // Stochastic calculation. All of the events get the same result.
+		dur: 1 / Pdup(Pwhite(5, 11), Pwhite(5, 11)), // Stochastic calculation. All of the events get the same result.
 	]);
 	Pseed(seed,Pseq([cc], inf)); // Bake together the seed with the variable cc (each new Pbind).
 };
@@ -209,7 +209,7 @@ Pdef(0,
 		rel: 0.001,
 		crv: -8,
 		dur: Pseq([0.1, 0.1, 0.1, 999], 1),
-		pan: Pstutter(4, Pwhite(0, 1)),
+		pan: Pdup(4, Pwhite(0, 1)),
 		hal: 1,
 		rts: 999,
 	])
@@ -227,7 +227,7 @@ Pdef(0,
 		rel: Pwhite(0.001, 1.0),
 		crv: Pwhite(-8.0, 8.0),
 		dur: Pexprand(0.001, 1.5),
-		pan: Pstutter(4, Pwhite(0.0, 1.0)),
+		pan: Pdup(4, Pwhite(0.0, 1.0)),
 		hal: 1,
 		rts: Pexprand(0.1, 4000.0),
 		bld: Pwhite(0.0, 1.0),
