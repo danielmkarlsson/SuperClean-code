@@ -6,11 +6,11 @@ Pdef(0,
 			type: \cln,
 			snd: \sin,
 			dur: Pseg(Plprand(1/8, 1), Plprand(10, 50), \wel, inf),
-			atk: Pstutter(Phprand(0, 2), Plprand(1/8, 8)),
-			rel: Pstutter(Plprand(0, 2), Plprand(1/8, 8)),
+			atk: Pdup(Phprand(0, 2), Plprand(1/8, 8)),
+			rel: Pdup(Plprand(0, 2), Plprand(1/8, 8)),
 			crv: Pseg([-8, 8, -8], Plprand(10, 100), \wel, inf),
 			amp: Pseg(Plprand(0.333, 0.725), Plprand(10, 50), \wel, inf),
-			freq: (20 * Pstutter(Plprand(0, 2), Plprand(1, 226).clump(Pfunc({~clump.next})).asStream.trace
+			freq: (20 * Pdup(Plprand(0, 2), Plprand(1, 226).clump(Pfunc({~clump.next})).asStream.trace
 				% (50 * Plprand(1, 226))) * Plprand(1, 5)),
 			legato: Pkey(\atk) + Pkey(\rel),
 			bnd: Pseg(Pwhite(-0.01, 0.01), Plprand(10, 50), \wel, inf)

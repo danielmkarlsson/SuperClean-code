@@ -11,7 +11,7 @@ Pdef(\0,
         midiout: m,
         ccn: Pseq((0..7),inf),
         ccv: Pexprand(1,127),
-        dur: (1/Pstutter(Pwhite(9,29),Pwhite(11.0,13.0))).trace,
+        dur: (1/Pdup(Pwhite(9,29),Pwhite(11.0,13.0))).trace,
         legato: Pexprand(1,2),
     ])
 ).play(quant:1);

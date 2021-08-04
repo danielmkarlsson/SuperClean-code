@@ -5,7 +5,7 @@
 Pdef(0,
 	Pseed(724,
 		Pbind(*[
-			type: Pstutter(Plprand(0, 4), Pseq([\cln, \r, \r, \r, \r], inf)),
+			type: Pdup(Plprand(0, 4), Pseq([\cln, \r, \r, \r, \r], inf)),
 			snd: \sin,
 			freq:  Pseq([
 				110, 220, 330, 440, 550, 660, 770, 130, 260, 390, 520, 650, 780, 910, 150, 300,
@@ -19,15 +19,15 @@ Pdef(0,
 			].mirror1, inf).clump(2)
 			/ Pseq((1.0, 1.01 .. 2.0).mirror1, inf).clump(2)
 			% Pseq([250, 500, 750, 1000, 1250, 1500].mirror1, inf).clump(4),
-			amp: Pstutter(Plprand(0, 4), Plprand(-7.5.dbamp, -1.5.dbamp)),
+			amp: Pdup(Plprand(0, 4), Plprand(-7.5.dbamp, -1.5.dbamp)),
 			dur: 1/8,
-			rel: Pstutter(Plprand(0, 4), Plprand(4.0, 16.0)),
+			rel: Pdup(Plprand(0, 4), Plprand(4.0, 16.0)),
 			crv: Plprand(-6.0, -2.0),
 			sustain: Pkey(\rel),
 			cav: 1,
-			cai: Pstutter(Plprand(0, 4), Plprand(0, 0.5)),
-			hpf: Pstutter(Plprand(0, 4), Plprand(20, 2000)),
-			lpf: Pstutter(Plprand(0, 4), Pwhite(200, 2000)) / Pkey(\freq).expexp(110, 2450, 0.25, 8),
+			cai: Pdup(Plprand(0, 4), Plprand(0, 0.5)),
+			hpf: Pdup(Plprand(0, 4), Plprand(20, 2000)),
+			lpf: Pdup(Plprand(0, 4), Pwhite(200, 2000)) / Pkey(\freq).expexp(110, 2450, 0.25, 8),
 		])
 	)
 ).play;

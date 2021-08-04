@@ -17,11 +17,11 @@ Pdef(0,
 		bno: Phprand(0.0, 2.0).round(0.25),
 		bnc: Pwhite(-8.0, 8.0),
 		scale: Scale.harmonicMinor,
-		degree: Pstutter(Plprand(0, 3), Pseq([
+		degree: Pdup(Plprand(0, 3), Pseq([
 			Plprand(0, 3, 1),
 			Plprand(4, 7, 1)
 		], inf)),
-		mtranspose: Pstutter(Phprand(4, 9), Pxshuf([
+		mtranspose: Pdup(Phprand(4, 9), Pxshuf([
 			Phprand(0, 3, 1),
 			Phprand(4, 7, 1),
 			Plprand(0, -3, 1),

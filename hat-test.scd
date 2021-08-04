@@ -15,7 +15,7 @@ Pdef(0,
         pan: Pseg([0.5,0,1,0.5],Pexprand(4.0,12),\sine,inf),
         dla: Pseg([0.0,1/20,0.0],Pexprand(8.0,36),\sine,inf),
         dlf: 0.94,
-        dlt: (2/Pstutter(Pn(Pgeom(1,2,3),inf),Pn(Pgeom(1,2,11),inf))).trace,
+        dlt: (2/Pdup(Pn(Pgeom(1,2,3),inf),Pn(Pgeom(1,2,11),inf))).trace,
         stretch: 0.7,
     ])
 ).play(quant:1);

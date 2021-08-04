@@ -3,7 +3,7 @@ Pdef(\0,
 	Pbind(*[
 		type: \clean,
 		snd: \mmd,
-		num: Pstutter(Pwhite(1,12),Pwhite(0,12),inf),
+		num: Pdup(Pwhite(1,12),Pwhite(0,12),inf),
 		rel: 0.05,
 		crv: -8,
 		amp: Pseg(Pexprand(1/4,4.0),Pexprand(1,10),\exp,inf),

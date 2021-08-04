@@ -6,15 +6,15 @@ Pdef(\0,
         type: \clean,
         s: \mmd,
         rps: Pwhite(5,11), // made up parameter, rps for repeats
-        dur: 1/Pstutter(Pkey(\rps),Pwhite(5,11)),
+        dur: 1/Pdup(Pkey(\rps),Pwhite(5,11)),
         rel: Pkey(\dur), // Pkey listens for a parameter _above_
         crv: -8,
         n: Pexprand(1,13),
         gain: Pexprand(0.1,1.0).trace, // trace is a handy diagnostic tool and also looks cool, try moving it
         dla: 1/2,
         dlf: 0.94, // feedback can go to 1 but 0.97 is as far I ever go
-        dlt: Pstutter(Pkey(\rps),1/64/Prand((1..7),inf)),
-        pan: Pstutter(Pkey(\rps),Pwhite(0.0,1.0)), // \dur, \dlt & \pan will all switch values together because \rps
+        dlt: Pdup(Pkey(\rps),1/64/Prand((1..7),inf)),
+        pan: Pdup(Pkey(\rps),Pwhite(0.0,1.0)), // \dur, \dlt & \pan will all switch values together because \rps
         ])
     ).play;
 )
@@ -25,7 +25,7 @@ Pdef(\0,
         type: \clean,
         s: \mmd, // try swapping this out for a longer file, like say up to 3 minutes
         n: 12,
-        begin: Pstutter(Pwhite(5,11),Pexprand(0.001,1.0)), // start playback at different points in the file
+        begin: Pdup(Pwhite(5,11),Pexprand(0.001,1.0)), // start playback at different points in the file
         legato: 1, // overlap into next sample, 1 = no overlap
         dur: Prand([1/8,1/4],inf), // choose either eights or quarters
         crv: -8, // real snappy release curvature is real nice
@@ -53,29 +53,29 @@ Pdef(\0,
     Pbind(*[
         type: \clean,
         s: \fmx,
-        rps: Pwhite(5,11), 
+        rps: Pwhite(5,11),
         freq: 50*Pexprand(1,5).round, // round is a neat trick to get integers out of Pexprand
         dur: Prand([1/8,1/4],inf),
-        hr1: Pstutter(Pkey(\rps)+Pwhite(0,7),Pshuf((1..4),inf)),
-        hr2: Pstutter(Pkey(\rps)+Pwhite(0,7),Pshuf((1..4),inf)),
-        hr3: Pstutter(Pkey(\rps)+Pwhite(0,7),Pshuf((1..4),inf)),
-        hr4: Pstutter(Pkey(\rps)+Pwhite(0,7),Pshuf((1..4),inf)),
-        mi2: Pstutter(Pkey(\rps)+Pwhite(0,7),Pshuf((1.0..4.0),inf)),
-        mi3: Pstutter(Pkey(\rps)+Pwhite(0,7),Pshuf((1.0..4.0),inf)),
-        mi4: Pstutter(Pkey(\rps)+Pwhite(0,7),Pshuf((1.0..4.0),inf)),
+        hr1: Pdup(Pkey(\rps)+Pwhite(0,7),Pshuf((1..4),inf)),
+        hr2: Pdup(Pkey(\rps)+Pwhite(0,7),Pshuf((1..4),inf)),
+        hr3: Pdup(Pkey(\rps)+Pwhite(0,7),Pshuf((1..4),inf)),
+        hr4: Pdup(Pkey(\rps)+Pwhite(0,7),Pshuf((1..4),inf)),
+        mi2: Pdup(Pkey(\rps)+Pwhite(0,7),Pshuf((1.0..4.0),inf)),
+        mi3: Pdup(Pkey(\rps)+Pwhite(0,7),Pshuf((1.0..4.0),inf)),
+        mi4: Pdup(Pkey(\rps)+Pwhite(0,7),Pshuf((1.0..4.0),inf)),
         fdb: Pexprand(0.0001,100.0),
-        en1: Pstutter(Pkey(\rps)+Pwhite(0,7),Pexprand(0.0001,0.555)),
-        en2: Pstutter(Pkey(\rps)+Pwhite(0,7),Pkey(\en1)*Pexprand(0.2,0.666)),
-        en3: Pstutter(Pkey(\rps)+Pwhite(0,7),Pkey(\en1)*Pkey(\en2)/Pexprand(0.3,0.777)),
-        en4: Pstutter(Pkey(\rps)+Pwhite(0,7),Pkey(\en1)*Pkey(\en2)/Pkey(\en3)*Pexprand(0.4,0.888)),
+        en1: Pdup(Pkey(\rps)+Pwhite(0,7),Pexprand(0.0001,0.555)),
+        en2: Pdup(Pkey(\rps)+Pwhite(0,7),Pkey(\en1)*Pexprand(0.2,0.666)),
+        en3: Pdup(Pkey(\rps)+Pwhite(0,7),Pkey(\en1)*Pkey(\en2)/Pexprand(0.3,0.777)),
+        en4: Pdup(Pkey(\rps)+Pwhite(0,7),Pkey(\en1)*Pkey(\en2)/Pkey(\en3)*Pexprand(0.4,0.888)),
         hl1: Pexprand(0.025,1.125),
         hl2: Pexprand(0.025,1.125),
         hl3: Pexprand(0.025,1.125),
         hl4: Pexprand(0.025,1.125),
-        cu1: Pstutter(Pkey(\rps)+Pwhite(0,7),Pwhite(0.25,1.0)),
-        cu2: Pstutter(Pkey(\rps)+Pwhite(0,7),Pwhite(0.25,1.0)),
-        cu3: Pstutter(Pkey(\rps)+Pwhite(0,7),Pwhite(0.25,1.0)),
-        cu4: Pstutter(Pkey(\rps)+Pwhite(0,7),Pwhite(0.25,1.0)),
+        cu1: Pdup(Pkey(\rps)+Pwhite(0,7),Pwhite(0.25,1.0)),
+        cu2: Pdup(Pkey(\rps)+Pwhite(0,7),Pwhite(0.25,1.0)),
+        cu3: Pdup(Pkey(\rps)+Pwhite(0,7),Pwhite(0.25,1.0)),
+        cu4: Pdup(Pkey(\rps)+Pwhite(0,7),Pwhite(0.25,1.0)),
         sustain: 5,
     ])
 )

@@ -5,7 +5,7 @@ Pdef(0,
             type: \cln,
             snd: \dfd,
             dur: Pwhite(0.5,1.5),
-            freq: Pstutter(Pwrand2([1, Pexprand(1, 5)], [100, 1], inf), Pexprand(20, 2000).round(20)).trace,
+            freq: Pdup(Pwrand2([1, Pexprand(1, 5)], [100, 1], inf), Pexprand(20, 2000).round(20)).trace,
             den: 0,
             res: 1,
             typ: Pexprand(1.0, 2.0) - 1,
@@ -15,8 +15,8 @@ Pdef(0,
             rel: 33,
             crv: 8,
             sustain: 66,
-            pan: Pstutter(Pexprand(1, 4),Pwhite(0.0, 1.0)),
+            pan: Pdup(Pexprand(1, 4),Pwhite(0.0, 1.0)),
         ])
     )
 ).play
-) 
+)
