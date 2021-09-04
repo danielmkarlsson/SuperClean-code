@@ -1,0 +1,3 @@
+*.sc linguist-language=SuperCollider
+*.scd linguist-language=SuperCollider
+*.scd linguist-detectable
