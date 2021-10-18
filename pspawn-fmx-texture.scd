@@ -46,7 +46,7 @@ Pdef(0,
 								stretch: Pseg([1,1,2,2,2],Pexprand(15,30),\lin,inf),
 								sustain: 1.75,
 								legato: 1.75,
-								dark: 0.75,
+								cav: 0.75,
 								hpf: 100,
 								//aux: Pdup(inf,Pxshuf((0..63),inf)),
 							])
