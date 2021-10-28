@@ -2,7 +2,7 @@
 Pdef(0,
     Pbind(*[
         type: \cln,
-		snd: \fmx, 
+		snd: \fmx,
         dur: Pexprand(1/16, 1),
         fdb: Pexprand(1.0, 50.0), // feedback of the output operator, higher number give more overtones, and eventually noise
         mi2: Pexprand(1.0, 50.0), // modulation index of the 2nd operator, this modulates the output operator
@@ -12,7 +12,7 @@ Pdef(0,
         //aux: Pwhite(0, 1), // untoggle if you have a Quadroponic speaker setup handy
         freq: 25 * Pexprand(1, 25).round, // 25 Hz is the fundamental, then multiplied by integers 1 thru 25 with .round, try without & .trace
         amp: Pkey(\freq).expexp(25, 625, 0.5, 0.05), // amp keys in \freq, translates from one exponential range to another
-        lpf: Pexprand(50, 5000).round(50).trace, // exponential stochastic choice rounded to nearest multiple of 50 with .round 
+        lpf: Pexprand(50, 5000).round(50).trace, // exponential stochastic choice rounded to nearest multiple of 50 with .round
         lpq: Pkey(\lpf).explin(25, 5000, 1, 0), // the q of the lpf is derived from the frquency of the filter, lower freq = higher resonance
         crv: Pkey(\dur).explin(1/16, 1, -8, 8), // the curvature of the amplitude envelope derived from \dur, note exponential to linear here
         rel: 8 * Pkey(\dur).explin(1/16, 1, 0.5, 1), // the release of the envelope is Pkeyed in from the duration
@@ -21,7 +21,7 @@ Pdef(0,
         shp: Pwhite(0.0, 0.5),
         tri: Pwhite(0.0, 0.5),
         lhf: Pwhite(0.0, 0.5),
-        dark: 1,
+        cav: 1,
     ])
 ).play
 )
@@ -45,11 +45,11 @@ Pdef(0,
 		//scale: Scale.bartok,
 		//scale: Pseq([Scale.bartok, Scale.partch_u1], inf),
 		degree: Pwhite(0, 17),
-		scale: Pseq([
-			Scale.harmonicMinor.tuning_(Tuning.sept1),
-			Scale.harmonicMinor.tuning_(Tuning.sept2),
+		/*scale: Pseq([
+			Scale.harmonicMinor(\sept1),
+			Scale.harmonicMinor(\sept2),
 			Scale.minor
-		].mirror, inf), 
+		].mirror, inf),*/
 		//harmonic: Pwhite(1, 9),
 		//mtranspose: Pwhite(0, 7),
 		//octave: Pwhite(3, 5),
@@ -61,11 +61,24 @@ Pdef(0,
 ).play
 )
 
-// include these lines in your own work and trace to see different kinds of palindromes from lists
-midinote: Pseq((0 .. 4).mirror, inf).trace,
-midinote: Pseq((0 .. 4).mirror1, inf)
-midinote: Pseq((0 .. 4).mirror2, inf)
+// engage the different midinote lines to hear the different mirrors
+(
+Pdef(0,
+	Pbind(*[
+		type: \cln,
+		snd: \kps,
+		dur: 1/4,
+		sustain: 2,
+		amp: 0.75,
+		midinote: Pseq((60, 62 .. 66).mirror, inf).trace,
+		midinote: Pseq((60, 62 .. 66).mirror1, inf).trace,
+		midinote: Pseq((60, 62 .. 66).mirror2, inf).trace,
 
+	])
+).play
+)
+
+// the different mirrors
 .mirror
 .mirror1
 .mirror2
@@ -104,7 +117,7 @@ Pdef(1,
 ).play.play(quant:1);
 )
 
-( //stop them both at the same time by evaluating the block
+( //stop them both at the same time by evaluating this block
 Pdef(0).stop; // or, individually by evaluating each line separately
 Pdef(1).stop;
 )
