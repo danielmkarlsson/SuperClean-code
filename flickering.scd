@@ -1,0 +1,37 @@
+(
+Pdef(0,
+    Pbind(*[
+        type: \cln,
+        snd: Pwrand2([\hat, \drm, \dfd, \kps, \r], [1, 4, 1, 1, 2], inf),
+        dur: 1 / Pdup(Plprand(5, 11), Plprand(1, 222)),
+        atk: Plprand(0.0, 1.0),
+        rel: Plprand(0.0, 1.75),
+        tun: Plprand(0.0, 1.0),
+        freq: Pkey(\tun).linexp(0.0, 1.0, 20, 400),
+        pew: Plprand(0.5, 1.0),
+        bnd: Plprand(1/16, 1/4),
+        amp: Pseg(Plprand(0.05, 2.0), Plprand(2.0, 20.0), \exp, inf),
+        fsh: Plprand(-1.0, 1.0),
+        fsm: Plprand(-2.0, 2.0),
+        pan: Pmeanrand(0.0, 1.0),
+        legato: Plprand(1, 20),
+        cav: 1,
+        cai: Pdup(Plprand(9, 19), Plprand(0.0, 0.0125)),
+        shp: Pwhite(0.0, 1.0),
+        sha: Pwhite(0.0, 1.0),
+        sho: Pwhite(0.0, 1.0),
+        shi: Pwhite(0.0, 1.0),
+        slo: Pwhite(0.0, 1.0),
+        hit: Pwhite(0.0, 1.0),
+        lot: Pwhite(0.0, 1.0),
+        ocq: Phprand(0.0, 1.0),
+        ocd: Phprand(0.0, 1.0),
+        hal: Pdup(Plprand(1, 1111), Prand([0, 1], inf)),
+        hai: Pseq([0, Plprand(0.0, 1.0, 1)], inf).trace,
+        rts: Pseg([0, Plprand(0.0, 25.0, 1)], 20, \wel, inf),
+        tnh: 1,
+        tng: Pseg(Plprand(0.0, 4.0), Plprand(2.0, 20.0), \exp, inf),
+    ])
+).play
+)
+
