@@ -1,0 +1,38 @@
+(
+Pdef(0,
+	Pseed(378,
+		Pbind(*[
+			type: \cln,
+			snd: \mmd,
+			seg: Plprand(3.0, 90.0),
+			dur: 1/8,
+			bpf: Pseg([Pdup(2, Plprand(20, 20000)), Plprand(20, 20000)], Pkey(\seg), \wel, inf),
+			bpq: Pkey(\bpf).expexp(20, 20000, 1, 0.00001),
+			lpf: Pseg([Pdup(2, Plprand(20, 20000)), Plprand(20, 20000)], Pkey(\seg), \wel, inf),
+			lpq: Pkey(\lpf).expexp(20, 20000, 1, 0.00001),
+			brf: Pseg([Pdup(2, Plprand(20, 20000)), Plprand(20, 20000)], Pkey(\seg), \wel, inf),
+			brn: Pseg([Pdup(2, Phprand(0.0, 1.0)), Plprand(0.0, 1.0)], Pkey(\seg), \wel, inf),
+			brq: Pkey(\brf).expexp(20, 20000, 1, 0.00001),
+			bro: Plprand(0.0, 1.0),
+			legato: Pkey(\dur) * 4,
+			sustain: Pkey(\dur) * 5,
+			rel: Pkey(\dur) * 6,
+			amp: Pseg([Pdup(2, Plprand(2, 16.0)), Plprand(1.0, 8.0)], Pkey(\seg), \wel, inf),
+			cav: 1/11,
+			cai: Pseg([Pdup(2, Plprand(0.0, 1.0)), Plprand(0.0, 1.0)], Pkey(\seg), \wel, inf),
+			pan: Pseq([Plprand(0.0, 0.5, 1), Phprand(0.5, 1.0, 1)], inf),
+			stretch: Pseg([Pdup(2, Plprand(1/11, 2.0)), Plprand(1/11, 2.0)], Pkey(\seg), \wel, inf).trace,
+			spd: Pseg([Pdup(2, Plprand(0.125, 8.0)), Plprand(0.125, 8.0)], Pkey(\seg), \wel, inf),
+			enh: Pseg([Pdup(2, Plprand(0.0, 1.0)), Plprand(0.0, 1.0)], Pkey(\seg), \wel, inf),
+			shp: Pseg([Pdup(2, Phprand(0.0, 1.0)), Phprand(0.0, 1.0)], Pkey(\seg), \wel, inf),
+			sho: Pseg([Pdup(2, Pwhite(0.0, 1.0)), Pwhite(0.0, 1.0)], Pkey(\seg), \wel, inf),
+			shi: Pseg([Pdup(2, Pwhite(0.0, 1.0)), Pwhite(0.0, 1.0)], Pkey(\seg), \wel, inf),
+			slo: Pseg([Pdup(2, Pwhite(0.0, 1.0)), Pwhite(0.0, 1.0)], Pkey(\seg), \wel, inf),
+			lot: Pseg([Pdup(2, Pwhite(0.0, 1.0)), Pwhite(0.0, 1.0)], Pkey(\seg), \wel, inf),
+			hit: Pseg([Pdup(2, Pwhite(0.0, 1.0)), Pwhite(0.0, 1.0)], Pkey(\seg), \wel, inf),
+			tri: Pseg([Pdup(2, Phprand(0.0, 0.5)), Phprand(0.0, 0.5)], Pkey(\seg), \wel, inf),
+			dst: Pseg([Pdup(2, Plprand(0.0, 0.5)), Plprand(0.0, 0.5)], Pkey(\seg), \wel, inf),
+		])
+	)
+).play
+)
