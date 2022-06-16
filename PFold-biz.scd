@@ -1,3 +1,6 @@
+// You need to install UGenPatterns for this to work:
+// https://github.com/redFrik/UGenPatterns
+
 (
 Pdef(0,
 	Pseed(7,
