@@ -39,5 +39,3 @@ Routine{
     s.stopRecording;
 }.play
 )
-
-0.75 * 1.5 
