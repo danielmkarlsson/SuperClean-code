@@ -1,0 +1,1 @@
+https://danielmkarlsson.com/log/
