@@ -28,7 +28,3 @@ Pdef(0,
     )
 ).play
 )
-
-s.record
-Pdef(0).stop
-
