@@ -1,0 +1,51 @@
+(
+Routine{
+    s.record;
+    1.wait;
+    Pdef(0,
+        Pseed(198,
+            Pbind(*[
+                type: \cln,
+                snd: Pwrand2([\mmd, \kps, \hat, \drm, \], [32, 4, 1, 16, 2], inf),
+                tun: Pdup(Plprand(1, 19), Plprand(3.25, 8.0).round(1/8)),
+                freq: Pdup(Plprand(1, 19), Plprand(40, 400).round(40)),
+                fed: Plprand(0.0, 8.0),
+                num: Pdup(Plprand(1, 19), Pxshuf((0 .. 12), inf)),
+                dur: (1 / Plprand(7.0, 17.0)),
+                amp: Plprand(0.25, 0.5),
+                pan: Pmeanrand(0.0, 1.0),
+                dla: Phprand(0.0, 1/3),
+                dlf: 0.94,
+                dlt: (1/32 / Pdup(Plprand(1, 19), Plprand(1.0, 7.0).round(0.5))),
+                tnh: 1,
+                tng: 32,
+                sgt: Pseq((0 .. 599), inf),
+                cav: 1.5,
+                cai: Pkey(\sgt).linlin(299, 599, 0.0, 1.0).trace,
+                spd: Pdup(Plprand(1, 19), Plprand(1/32, 8.0)).round(1/9),
+                bgn: Pwrand2([Plprand(0.0, 0.125, 1), Plprand(1.875, 2.0, 1)], [2, 1], inf),
+                bnd: Pmeanrand(-0.2, 0.2),
+                bno: Pwhite(0.0, 4.0),
+                bnt: Phprand(1.0, 4.0),
+                rel: Phprand(3.3, 33.0),
+                legato: 99,
+                lhf: Plprand(0.1, 0.9),
+                shp: 1,
+                sha: 0,
+                sho: Pmeanrand(0.0, 1.0),
+                shi: Pmeanrand(0.0, 1.0),
+                slo: Pmeanrand(0.0, 1.0),
+                hit: Pmeanrand(0.0, 1.0),
+                lot: Pmeanrand(0.0, 1.0),
+                rma: Plprand(0.0, 1.0),
+                rmf: Plprand(80.0, 800.0).round(40),
+                stretch: Pseg(Plprand(1.0, 1.5), Plprand(30.0, 90.0), \sin, inf),
+            ])
+        )
+    ).play;
+    240.wait;
+    Pdef(0).stop;
+    60.wait;
+    s.stopRecording;
+}.play
+)
