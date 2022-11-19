@@ -1,0 +1,35 @@
+(
+Pdef(0,
+    Pseed(2467,
+        Pbind(*[
+            type: \cln,
+            snd: Pwrand2([\drm, \hat], [8, 1], inf),
+            dur: 1/13,
+            rel: 99.0,
+            tun: Pdup(Plprand(1, 5), Plprand(0.0, 9.3).round(0.3)),
+            fed: Plprand(0.0, 6.0),
+            amp: Plprand(0.5, 2.0),
+            pan: Pmeanrand(0.0, 1.0),
+            pew: Phprand(0.5, 1.0),
+            stretch: Pseg([1.0, 3.0], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+            shp: Pseg([0.0, 1.0], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+            sho: Pseg([0.0, 1.0], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+            shi: Pseg([0.0, 1.0], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+            slo: Pseg([0.0, 1.0], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+            hit: Pseg([0.0, 1.0], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+            lot: Pseg([0.0, 1.0], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+            tnh: Pseg([0.0, 1.0, 0.0], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+            tng: Pseg([0.0, 10.0], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+            dst: Pseg([0.0, 1.0], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+            tri: Pseg([0.0, 1.0], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+            sustain: Pseg([1/5, 5.0], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+            smr: Pseg([0.0, Phprand(0.0, 1.0, 1)], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf).trace,
+            enh: Pseg([0.0, Plprand(0.0, 1/4, 1)], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+            fsh: Pseg([0.0, Pmeanrand(0.0, 1.0, 1)], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+            fsm: Pseg([0.0, Pmeanrand(-10.0, 10.0, 1)], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+            fuz: Pwrand2([0, 1], [8, 1], inf),
+            fsm: Pseg([0.0, Plprand(0.0, 10.0, 1)], Plprand(3.0, 19.0), Pmeanrand(-8.0, 8.0), inf),
+        ])
+    )
+).play
+)
