@@ -1,0 +1,41 @@
+(
+Pdef(0,
+    Pseed(8,
+        Pbind(*[
+            type: \cln,
+            snd: \dfd,
+            den: Pmeanrand(0, 2000),
+            dur: Pseq([0.01, 0.01, Phprand(5.0, 22.0, 1)], inf),
+            octave: Plprand(2, 6),
+            degree: Plprand(0, 7, inf),
+            scale: Pdup(Plprand(15, 33), Pxshuf([
+                Scale.harmonicMinor(\just),
+                Scale.mixolydian(\sept1),
+                Scale.aeolian(\sept2),
+                Scale.locrian(\mean4),
+                Scale.lydian(\mean5),
+                Scale.dorian(\mean6),
+            ], inf)),
+            legato: 99,
+            shp: 1,
+            sho: 0.378,
+            shi: 0.993,
+            slo: 0.381,
+            hit: 0.196,
+            lot: 0.712,
+            sustain: 99,
+            bgn: Pwrand2([0, Plprand(0.1, 0.9, 1)], [2, 1], inf).trace,
+            amp: (Plprand(0.2, 0.4) / Pkey(\octave).linlin(4, 5, 0.9, 4)),
+            pan: Pmeanrand(0.1, 0.9),
+            atk: Pkey(\bgn).linlin(0.0, 0.001, 0.0, 33.0),
+            hld: Plprand(11.0, 33.0) / Pkey(\octave).linlin(4, 5, 1/2, 2),
+            rel: Plprand(11.0, 33.0) / Pkey(\octave).linlin(4, 5, 1/2, 2),
+            crv: 0,
+            cav: 1/4,
+            fuz: 1,
+            tnh: 1,
+            tng: 100,
+        ])
+    )
+).play
+)
