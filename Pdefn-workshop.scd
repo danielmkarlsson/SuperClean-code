@@ -1,11 +1,9 @@
 (
-Pbindef(
-    \0,
-    \type, \clean,
-    \s, \fmx,
+Pbindef(\0,
+    \type, \cln,
+    \snd, \fmx,
     \sed, Pdefn(\sed),
     \rps, Pdefn(\rps),
-    \n, Pdefn(\n),
     \dur, Pdefn(\dur),
     \hr1, Pdefn(\hr1),
     \hr2, Pdefn(\hr2),
@@ -31,12 +29,11 @@ Pbindef(
     \hpf, Pdefn(\hpf),
     \rel, Pdefn(\rel),
     \crv, Pdefn(\crv),
-).play(quant:1);
+).play
 )
 
 (
 Pdefn(\rps, Pn(Pdup(Pwhite(1,9),Pseries(99,1,199))),inf);
-Pdefn(\n, ([0,2,4,7]+Pdup(Pkey(\rps),Pwhite(-6,6))).trace); // how to Prand chords tho?
 Pdefn(\dur, Pdup(Pexprand(1,15).asInteger,1/Pwhite(5,11)));
 Pdefn(\hr1, Pdup(Pkey(\rps),Pexprand(1,4).asInteger));
 Pdefn(\hr2, Pdup(Pkey(\rps),Pexprand(1,4).asInteger));
