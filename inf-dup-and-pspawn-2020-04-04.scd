@@ -1,10 +1,10 @@
 (
-(// Manually evaluating a couple of times yields overlapping patterns that play in sync. These ventually stop unless reevaluated.
+(// Manually evaluating a couple of times yields overlapping patterns that play in sync. These eventually stop unless reevaluated.
 Pbind(*[
 	type: \cln,
 	snd: \fmx,
 	midinote: 60 + Pdup(inf, (Prand((-24, Prand([-20, -17, -14, -10], inf) .. 24), inf)), inf)
-	- Pdup(inf, Pwrand([0, 12, 24], [1, 2, 4].normalizeSum, inf), inf),
+	    - Pdup(inf, Pwrand([0, 12, 24], [1, 2, 4].normalizeSum, inf), inf),
 	dur: 1 / 11 * Pexprand(1, 23).round,
 	amp: Pseg([0, 2, 0], Pkey(\dur) * Pexprand(19, 43), \welch, 1).trace,
 	lpf: Pexprand(20, 20000),
@@ -18,7 +18,7 @@ Pbind(*[
 	mi4: Pwhite(0.0, 4),
 	fdb: Pwhite(0.0, 4),
 	crv: -8,
-]).play(quant:1);
+]).play
 );
 
 (// AutoMagically fades in and out but kills running instances at reevaluation.
@@ -52,4 +52,4 @@ Pdef(\0).stop;
 /*
 
 I like how the above requires you to reevaluate, or it fizzles out. Kind of like a hand cranked mode of operation.
-If you don't edit the code density is the single parameter under your control.
+If you don't edit the code, density is the single parameter under your control.
