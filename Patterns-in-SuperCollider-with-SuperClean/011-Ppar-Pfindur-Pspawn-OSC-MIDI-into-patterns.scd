@@ -194,7 +194,7 @@ Pdef(0,
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// \kps can now bnd
+// \kps can bnd
 // Interesting clipThrough phenomena in the example below (be warned, this is kind of harsh, so,
 // adjust volume accordingly).
 
@@ -217,7 +217,7 @@ Pdef(0,
 			tnh: 1,
 			tnb: 10000,
 			tng: 100,
-			dark: 1,
+			cav: 1,
 			ocd: Pseg(Phprand(0.0, 1.0), Phprand(1.0, 128.0), \wel, inf),
 			ocq: Pseg(Phprand(0.0, 1.0), Phprand(1.0, 128.0), \wel, inf),
 		])
@@ -251,7 +251,7 @@ Pdef(0,
 		send: Pfunc { |e| n.sendMsg("/grainSize" , e[\value] ) },
 		dur: 1/8 * Pwhite(1, 5),
 	])
-).play(quant: 1);
+).play;
 
 Pdef(1,
 	Pbind(*[
@@ -260,7 +260,7 @@ Pdef(1,
 		send: Pfunc { |e| n.sendMsg("/grainOctave" , e[\value] ) },
 		dur: 1/8 * Pwhite(1, 5),
 ])
-).play(quant: 1);
+).play;
 
 Pdef(2,
 	Pbind(*[
@@ -269,31 +269,32 @@ Pdef(2,
 		send: Pfunc { |e| n.sendMsg("/grainTime" , e[\value] ) },
 		dur: 1/8 * Pwhite(1, 5),
 	])
-).play(quant: 1);
+).play;
 
 Pdef(3,
 	Pbind(*[
 		type: \r,
 		value: Pdup(8, Plprand(0.5, 0.75, inf)), // Note that we are using a fraction of the value range,
-		send: Pfunc { |e| n.sendMsg("/density" , e[\value] ) }, // with maintained resolution. Compare MIDI CCs.
+		send: Pfunc { |e| n.sendMsg("/density", e[\value] ) }, // with maintained resolution. Compare MIDI CCs.
 		dur: 1/8 * Pwhite(1, 5),
 	])
-).play(quant: 1);
+).play;
 
 Pdef(4,
 	Pbind(*[
 		type: Pwrand2([\cln, \r], [1, 2.25], inf),
 		snd: \drm,
-		tun: Pxshuf((-6 , -5.75 .. 6), inf),
-		fed: Pxshuf((0 , 0.1 .. 1), inf),
-		dur: 1/2 / Pdup(8, Plprand(1, 5)),
+		tun: Pxshuf((0, 0.15 .. 5), inf),
+		fed: Pxshuf((0, 0.1 .. 2.5), inf),
+		dur: 1 / Pdup(8, Plprand(1, 5)),
 		amp: Plprand(1.0, 8.0),
 		rel: Pkey(\dur),
 		crv: -8,
 		pan: Pmeanrand(0.0, 1.0),
-		dark: Pdup(Plprand(1, 3), Plprand(0.0, 0.005)),
+		cav: Pdup(Plprand(1, 3), Pwrand2([0, 1], [1, 2], inf)),
+		cai: Pdup(Plprand(1, 3), Pseq([0, Plprand(0.0, 1/32, 1)], inf)),
 	])
-).play(quant: 1);
+).play;
 )
 
 // Some other useful programs that can receive OSC messages:
@@ -343,7 +344,8 @@ Pdef(0,
 		amp: Plprand(0.5, 0.75),
 		dur: Pfunc{~slider1.linexp(0,127, 0.1, 0.5)}, // Duration controlled by ~slider1 variable.
 		lpf: Pfunc{~slider2.linexp(0,127, 20, 20000)}, // Low pass filter controlled by ~slider2 variable.
-		dark: Pfunc{~slider3.linlin(0,127, 0.0, 1.0)}, // Dark wet controlled by ~slider3 variable.
+		cav: 1,
+		cai: Pfunc{~slider3.linlin(0,127, 0.0, 1.0)}, // cav input controlled by ~slider3 variable.
 
 	])
 ).play
@@ -373,5 +375,5 @@ Pdef(5,
 		rmf: Plprand(200, Pseg(Plprand(200, 800), Phprand(10.0, 30.0), \wel, inf)),
 		shp: Pseg(Plprand(0.0, 1.0), Phprand(10.0, 30.0), \wel, inf),
 	])
-).play(quant:1);
+).play;
 )
