@@ -12,6 +12,8 @@ Routine{
                 scale: Scale.chromatic(\just),
                 degree: Pdup(Plprand(1, 111), Plprand(-7, 0) * Pwhite(2, 3)),
                 octave: Pexprand(3, 6).round,
+                calcFreq: Pfunc{|ev|ev.use{ev.freq.asStringPrec(48).postln}},
+                frq: Pfunc{|ev|ev.use{ev.freq}},
                 legato: 99,
                 cav: 1/16,
                 cai: Pexprand(1.0, 2.0) - 1,
@@ -44,7 +46,7 @@ Routine{
                 aux: Pdup(Plprand(8, 32), Pxshuf((0 .. 7), inf)),
                 dla: 1/4,
                 dlf: 0.99,
-                dlt: Pseg(Pdup(2, Pexprand(1/666, 1/16).round(1/666)), Phprand(15.0, 30.0), \exp, inf).trace,
+                dlt: Pseg(Pdup(2, Pexprand(1/666, 1/16).round(1/666)), Phprand(15.0, 30.0), \exp, inf),
                 dst: Pwrand2([0, 1], [99, 1], inf),
             ])
         )
