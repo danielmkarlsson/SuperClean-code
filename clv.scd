@@ -1,0 +1,35 @@
+(
+Pdef(0,
+    Pbind(*[
+        type: \cln,
+        snd: \sin,
+        frq: Pfunc{|ev|ev.use{ev.freq}},
+        atk: 0,
+        rel: 1,
+        crv: -8,
+        sustain: 1.001,
+        midinote: Pxshuf([
+            Pseq([(16, 23 .. 127)], 1), 
+            Pseq([(16, 24 .. 127)], 1),
+            Pseq([(16, 25 .. 127)], 1),
+            Pseq([(16, 26 .. 127)], 1),
+            Pseq([(16, 27 .. 127)], 1),
+            Pseq([(16, 29 .. 127)], 1),
+            Pseq([(16, 30 .. 127)], 1),
+            Pseq([(16, 32 .. 127)], 1),
+            Pseq([(16, 35 .. 127)], 1),
+            Pseq([(16, 39 .. 127)], 1),
+            Pseq([(16, 44 .. 127)], 1),
+            Pseq([(16, 54 .. 127)], 1),
+            Pseq([(16, 72 .. 127)], 1),
+        ], inf).trace,
+        dur: Pseq([1/11], inf),
+        amp: Pexprand(0.2, 0.6),
+        pan: Pseg(Pdup(2, Pwhite(0.0, 1.0)), Phprand(1.0, 10.0), \sin, inf),
+        cav: 1/8,
+        cai: Pseg(Pdup(2, Pwhite(0.0, 1.0)), Pwhite(1.0, 10.0), \lin, inf),
+        fsh: Pexprand(1.0, 1.01).round(0.01) - 1,
+        fsm: Pexprand(1.0, 10.0).round(0.1) - 1,
+    ])
+).play
+)
