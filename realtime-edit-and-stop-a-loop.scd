@@ -18,7 +18,7 @@ r = {
 
 ( 
 Pdef(0).stop;
-r.stop; // fun to eval just this line to make it "freeze" on one value, then go back up and run the block again
+r.stop; // fun to eval just this line to make it "freeze" on one value, then go back and run the block again
 )
 
 ( // vanilla SC example
@@ -31,7 +31,7 @@ r = {
                 freq: Pdup(inf, Pexprand(220, 440, 1)),
             ])
         ).play(quant:0);
-        exprand(0.001, 0.002).wait; // problems when changing these values back and forth while this code is running
+        exprand(0.001, 0.002).wait;
         Pdef(0).stop;
     }
 }.fork;
