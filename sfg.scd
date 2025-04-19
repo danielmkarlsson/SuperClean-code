@@ -1,7 +1,7 @@
 (
 Routine{
-    s.record;
-    1.wait;
+    //s.record;
+    //1.wait;
     Pdef(0,
         Pseed(9996,
             Pbind(*[
