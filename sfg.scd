@@ -1,35 +1,35 @@
 (
-Pdef(0,
-    Pseed(9993,
-        Pbind(*[
-            type: \cln,
-            snd: \fmx,
-            hr1: Pdup(Plprand(1, 111), Pexprand(1.0, 7.0).round(0.85)),
-            hr2: Pdup(Plprand(1, 111), Pexprand(1.0, 7.0).round(0.85)),
-            hr3: Pdup(Plprand(1, 111), Pexprand(1.0, 7.0).round(0.85)),
-            hr4: Pdup(Plprand(1, 111), Pexprand(1.0, 7.0).round(0.85)),
-            mi1: Pexprand(1.0, 5.0) - 1,
-            mi2: Pexprand(1.0, 5.0) - 1,
-            mi3: Pexprand(1.0, 5.0) - 1,
-            mi4: Pexprand(1.0, 5.0) - 1,
-            en1: Plprand(0.05, 0.95),
-            en2: Pmeanrand(0.05, 0.95),
-            en3: Phprand(0.05, 0.95),
-            en4: Pmeanrand(0.05, 0.95),
-            cu1: Pmeanrand(-8.0, 8.0),
-            cu2: Pmeanrand(-8.0, 8.0),
-            cu3: Pmeanrand(-8.0, 8.0),
-            cu4: Pmeanrand(-8.0, 8.0),
-            dur: Pdup(Plprand(1, 2), Pexprand(0.001, 2.0)).trace,
-            rel: Pexprand(1/8, 8.0),
-            crv: -8,
-            sustain: Pkey(\rel),
-            freq: Pdup(Plprand(1, 11), Pexprand(70, 320).round(35).unique),
-            amp: Pdup(Plprand(1, 11), Plprand(0.4, 0.8)) * Pkey(\freq).linexp(70, 320, 1.2, 0.8),
-            pan: Pdup(Plprand(1, 3), Pseq((0.0, 0.03 .. 1.0), inf)),
-            jpr: 1/8,
-            jps: 1,
-        ])
-    )
-).play
+Routine{
+    s.record;
+    1.wait;
+    Pdef(0,
+        Pseed(9996,
+            Pbind(*[
+                type: \cln,
+                snd: \dfd,
+                ext: Pdup(2, Pexprand(1, 32)),
+                lpf: 2025 - Pexprand(25, 2000),
+                freq: Pseq([25, 50, 100, 200, 300, 350, 375, 500, 750, 1000], inf),
+                atk: 9 - Pexprand(3.5, 5.5),
+                rel: 9 - Pexprand(3.5, 5.5) * Pkey(\ext),
+                sustain: Pkey(\atk) + Pkey(\rel), 
+                dur: Pdup(Pseq([9, 1], inf), Pseq([1/1024, (Pexprand(1/16, 1.5, 1) * Pkey(\ext) / 1.6)], inf)),
+                crv: 8,
+                crt: -8,
+                hpf: Pexprand(20, 8000).trace,
+                amp: Pkey(\freq).expexp(25, 1000, 0.75, 0.25),
+                jpr: 3/4,
+                jpg: Pdup(10, Pexprand(1.0, 2.0) - 1),
+            ])
+        )
+    ).play;
+    1200.wait;
+    Pdef(0).stop;
+    120.wait;
+    s.stopRecording;
+    120.wait;
+}.play
 )
+
+
+Pdef(0).stop
