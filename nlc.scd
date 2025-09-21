@@ -1,4 +1,34 @@
 (
+Pdef(1,
+    Pseed(9999,
+        Pbind(*[
+            type: \cln,
+            snd: \,
+            amp: 0,
+            dur: 1/11,
+            jpr: 1/2,
+            jpg: Pseg(Plprand(0.0, 3.0), Pwhite(10.0, 30.0), \lin, inf),
+            jps: Pbrown(0.0, 1.0, Pexprand(0.0001, 0.1)).trace,
+        ])
+    )
+);
+
+Pdef(2,
+    Pseed(9998,
+        Pbind(*[
+            type: \cln,
+            snd: \,
+            amp: 0,
+            dur: 1/11,
+            jpr: 1/2,
+            jpg: Pseg(Plprand(0.0, 3.0), Pwhite(10.0, 30.0), \lin, inf),
+            jps: Pbrown(0.0, 1.0, Pexprand(0.0001, 0.1)).trace,
+            aux: 1,
+        ])
+    )
+);
+
+thisThread.randSeed = 9994;
 ~hrn = Pexprand(1.0, 3.0).asStream;
 ~tpn = Pwhite(0.0, 1.0).asStream;
 Pdef(0,
@@ -34,51 +64,17 @@ Pdef(0,
     )
 );
 Routine{
-    s.record(numChannels:4);
+    //s.record(numChannels:4);
     Pdef(1).play;
     Pdef(2).play;
-    1.wait;
+    //1.wait;
     Pdef(0).play;
     360.wait;
     Pdef(0).stop;
     120.wait;
     s.stopRecording;
+    Pdef(1).stop;
+    Pdef(2).stop;
 }.play
 )
 
-
-Pdef(0).stop
-
-
-(
-Pdef(1,
-    Pseed(9999,
-        Pbind(*[
-            type: \cln,
-            snd: \,
-            amp: 0,
-            dur: 1/11,
-            jpr: 1/2,
-            jpg: Pseg(Plprand(0.0, 3.0), Pwhite(10.0, 30.0), \lin, inf),
-            jps: Pbrown(0.0, 1.0, Pexprand(0.0001, 0.1)).trace,
-        ])
-    )
-)
-)
-
-(
-Pdef(2,
-    Pseed(9998,
-        Pbind(*[
-            type: \cln,
-            snd: \,
-            amp: 0,
-            dur: 1/11,
-            jpr: 1/2,
-            jpg: Pseg(Plprand(0.0, 3.0), Pwhite(10.0, 30.0), \lin, inf),
-            jps: Pbrown(0.0, 1.0, Pexprand(0.0001, 0.1)).trace,
-            aux: 1,
-        ])
-    )
-)
-)
