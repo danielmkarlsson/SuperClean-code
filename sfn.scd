@@ -106,7 +106,7 @@ Routine{
     360.wait;
     Pdef(0).stop;
     120.wait;
-    //s.stopRecording;
+    s.stopRecording;
     Pdef(1).stop;
     Pdef(2).stop;
     Pdef(3).stop;
