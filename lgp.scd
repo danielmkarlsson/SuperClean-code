@@ -20,7 +20,8 @@ Pdef(0,
     )
 );
 Routine{
-    s.record;
+    //s.record;
+    //1.wait;
     Pdef(0).play;
     180.wait;
     Pdef(0).stop;
