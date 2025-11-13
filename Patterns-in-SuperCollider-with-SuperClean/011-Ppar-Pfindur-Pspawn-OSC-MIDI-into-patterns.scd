@@ -62,6 +62,26 @@ Pdef(\form,
 )
 // Try changing the contents of Pdefs 0 to 2 and reevaluating while Pdef(\form) is running with inf at the bottom.
 
+( // same but expressed in seconds with a Routine instead
+Routine{ // this might suit some use cases better
+	Pdef(0).play; // Pdef(0).play(quant 0); // maybe try adding (quant 0) for some stuff
+	1.wait;
+	Pdef(0).stop;
+	Pdef(1).play;
+	2.wait;
+	Pdef(1).stop;
+	Pdef(2).play;
+	3.wait;
+	Pdef(2).stop;
+	Pdef(1).play;
+	2.wait;
+	Pdef(1).stop;
+	Pdef(0).play;
+	1.wait;
+	Pdef(0).stop;
+}.play
+)
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Did you know: You can do sharps and flats in a scale with s & b.
