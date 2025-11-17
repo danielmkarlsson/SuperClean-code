@@ -73,7 +73,7 @@ Pdef(1,
     ])
 );
 Routine{
-    s.record(numChannels: 16);
+    //s.record(numChannels: 16);
     Pdef(0).play;
     1200.wait;
     Pdef(0).stop;
