@@ -1,4 +1,4 @@
-((
+(
 thisThread.randSeed = 9099;
 ~a = {arg snd, degree, amp;
     var b = Pbind(*[
@@ -19,11 +19,11 @@ thisThread.randSeed = 9099;
         frq: Pfunc{|ev|ev.use{ev.freq}},
         sustain: Pseg(Pwhite(1/6, 1/2), Pwhite(4.0, 16.0), \wel, inf),
         amp: (Pseg(Pexprand(0.3, 0.9), Pexprand(8.0, 32.0), \wel, inf) 
-            / Pkey(\frq).expexp(43, 4186, 1, 3)
-            / Pkey(\mia).linlin(0.075, 600, 1, 3)).trace,
+        / Pkey(\frq).expexp(43, 4186, 1, 3)
+        / Pkey(\mia).linlin(0.075, 600, 1, 3)).trace,
         pan: Pxshuf([Pexprand(0.1, 0.4, 1), Pmeanrand(0.1, 0.9, 1), 1.5 - Pexprand(0.6, 0.9, 1)], inf),
     ]);
-        Pseq([b], inf);
+    Pseq([b], inf);
 };
 Pdef(0, ~a.(\fm0, 0, 0)).play;
 Pdef(1, ~a.(\fm1, 1, 0)).play;
@@ -59,13 +59,12 @@ Pdef(30, ~a.(\fmt, 30, 0)).play;
 Pdef(31, ~a.(\fmu, 31, 0)).play;
 r.stop;
 r = {
-	loop{
-		32.do{|i|Pdef(i).reset;};
+    loop{
+        32.do{|i|Pdef(i).reset;};
         [2, 4, 8, 16, 32, 48, 64, 80].wchoose
         ([1, 15, 5, 11, 7, 8, 13, 3].normalizeSum).wait;
-	}
+    }
 }.fork;
-);
 Routine{
     5400.wait;
     32.do{|i|Pdef(i).stop;};
