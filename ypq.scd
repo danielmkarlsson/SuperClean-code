@@ -1,0 +1,56 @@
+// SuperClean.irPath = Main.packages.asDict.at('SuperClean') +/+ "IRs" +/+ "spg.wav";
+
+(
+Pdef(0,
+    Pseed(9999, 
+        Pbind(*[
+            type: Pwrand2([\cln, \], [2, 1], inf),
+            snd: Pdup(Pexprand(1, 9), Pxshuf([\fm1, \fm3, \fm7, \fmb, \fmd, \fmh], inf)),
+            sustain: Pexprand(5, 10),
+            pan: Pwhite(0.0, 1.0),
+            octave: 4,
+            degree: Pseg(Pdup(2, Pmeanrand(-0.5, 0.5)), Pexprand(3.0, 30.0), \wel, inf),
+            dur: Pseq([Pdup(Pexprand(1, 6), Pseq([1/1024], 1)), Pseq([3], 1)], inf),
+            en1: Pseg(Pmeanrand(0.1, 0.9), Pexprand(3.0, 30.0), \wel, inf),
+            en2: Pseg(Pmeanrand(0.1, 0.9), Pexprand(3.0, 30.0), \wel, inf),
+            en3: Pseg(Pmeanrand(0.1, 0.9), Pexprand(3.0, 30.0), \wel, inf),
+            en4: Pseg(Pmeanrand(0.1, 0.9), Pexprand(3.0, 30.0), \wel, inf),
+            en5: Pseg(Pmeanrand(0.1, 0.9), Pexprand(3.0, 30.0), \wel, inf),
+            en6: Pseg(Pmeanrand(0.1, 0.9), Pexprand(3.0, 30.0), \wel, inf),
+            mi1: Pseg(Pmeanrand(0.0, 2.0), Pexprand(3.0, 30.0), \wel, inf),
+            mi2: Pseg(Pmeanrand(0.0, 2.0), Pexprand(3.0, 30.0), \wel, inf),
+            mi3: Pseg(Pmeanrand(0.0, 2.0), Pexprand(3.0, 30.0), \wel, inf),
+            mi4: Pseg(Pmeanrand(0.0, 2.0), Pexprand(3.0, 30.0), \wel, inf),
+            mi5: Pseg(Pmeanrand(0.0, 2.0), Pexprand(3.0, 30.0), \wel, inf),
+            mi6: Pseg(Pmeanrand(0.0, 2.0), Pexprand(3.0, 30.0), \wel, inf),
+            hr1: Pseg(Pdup(2, Pxshuf((1 .. 4), inf)), Pexprand(3.0, 30.0), \wel, inf).trace,
+            hr2: Pseg(Pdup(2, Pxshuf((1 .. 4), inf)), Pexprand(3.0, 30.0), \wel, inf),
+            hr3: Pseg(Pdup(2, Pxshuf((1 .. 4), inf)), Pexprand(3.0, 30.0), \wel, inf),
+            hr4: Pseg(Pdup(2, Pxshuf((1 .. 4), inf)), Pexprand(3.0, 30.0), \wel, inf),
+            hr5: Pseg(Pdup(2, Pxshuf((1 .. 4), inf)), Pexprand(3.0, 30.0), \wel, inf),
+            hr6: Pseg(Pdup(2, Pxshuf((1 .. 4), inf)), Pexprand(3.0, 30.0), \wel, inf),
+            fsh: Pseg(Pexprand(1, 126) - 1, Pexprand(6.0, 60.0), \wel, inf),
+            amp: Pseg(Pexprand(0.3, 0.8), Pexprand(3.0, 30.0), \wel, inf),
+            jpr: 1/4,
+            jpg: Pseg(Pdup(2, 3 - Pexprand(1, 2) - 1), Pexprand(30.0, 300.0), \wel, inf),
+            jps: Pseg(1.25 - Pdup(2, Pexprand(0.25, 1.0)), Pexprand(30.0, 300.0), \wel, inf),
+            jts: Pseg(Pwhite(0.0, 1.0), Pwhite(15.0, 90.0), \lin, inf),
+            jpd: Pseg(Pwhite(0.0, 1.0), Pwhite(15.0, 90.0), \lin, inf),
+            jed: Pseg(Pwhite(0.0, 1.0), Pwhite(15.0, 90.0), \lin, inf),
+            jpl: Pseg(Phprand(0.5, 1.0), Pwhite(15.0, 90.0), \lin, inf),
+            jpm: Pseg(Pwhite(0.0, 0.5), Pwhite(15.0, 90.0), \lin, inf),
+            jph: Pseg(Plprand(0.0, 0.25), Pwhite(15.0, 90.0), \lin, inf),
+            jlc: Pseg(Pwhite(0.0, 1.0), Pwhite(15.0, 90.0), \lin, inf),
+            jhc: Pseg(Pwhite(0.0, 1.0), Pwhite(15.0, 90.0), \lin, inf),
+            hpf: Pseg(Pexprand(20, 2000), Pexprand(3.0, 30.0), \wel, inf),
+            lpf: Pseg(20200 - Pexprand(200, 20000), Pexprand(3.0, 30.0), \wel, inf),
+            lhf: Pseg(Pmeanrand(0.0, 0.9), Pexprand(3.0, 30.0), \wel, inf),
+            hlf: Pseg(Pmeanrand(0.0, 0.9), Pexprand(3.0, 30.0), \wel, inf),
+            mir: 2/3,
+            aux: Pxshuf((0 .. 7), inf),
+        ])
+    )
+).play
+)
+
+Pdef(0).stop
