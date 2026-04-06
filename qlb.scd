@@ -1,0 +1,56 @@
+(
+Pdef(0,
+    Pseed(9999,
+        Pbind(*[
+            type: Pwrand2([\cln, \], [1, 4], inf),
+            snd: Pxshuf([
+                \fm0, \fm1, \fm2, \fm3, \fm4, \fm5, \fm6, \fm7, \fm8, \fm9,
+                \fma, \fmb, \fmc, \fmd, \fme, \fmf, \fmg, \fmh, \fmi, \fmj,
+                \fmk, \fml, \fmm, \fmn, \fmo, \fmp, \fmq, \fmr, \fms, \fmt,
+                \fmu, \fmv,
+            ], inf),
+            scale: Scale.harmonicMinor(\wcSJ),
+            degree: Pdup(Pexprand(1, 19), Plprand(0, 7)),
+            octave: Pmeanrand(2, 6).round,
+            calcFreq: Pfunc{|ev|ev.use{ev.freq.asStringPrec(48).postln}},
+            dur: 1 / Pexprand(5, 11).round,
+            sustain: Pexprand(1, 4),
+            mi1: Pexprand(1, 2) - 1,
+            mi2: Pexprand(1, 2) - 1,
+            mi3: Pexprand(1, 2) - 1,
+            mi4: Pexprand(1, 2) - 1,
+            mi5: Pexprand(1, 2) - 1,
+            mi6: Pexprand(1, 2) - 1,
+            hr1: Pexprand(1, 5).round.unique - 1,
+            hr2: Pexprand(1, 5).round.unique - 1,
+            hr3: Pexprand(1, 5).round.unique - 1,
+            hr4: Pexprand(1, 5).round.unique - 1,
+            hr5: Pexprand(1, 5).round.unique - 1,
+            hr6: Pexprand(1, 5).round.unique - 1,
+            en1: Pmeanrand(0.1, 0.9),
+            en2: Pmeanrand(0.1, 0.9),
+            en3: Pmeanrand(0.1, 0.9),
+            en4: Pmeanrand(0.1, 0.9),
+            en5: Pmeanrand(0.1, 0.9),
+            en6: Pmeanrand(0.1, 0.9),
+            cu1: Pmeanrand(-8.0, 8.0),
+            cu2: Pmeanrand(-8.0, 8.0),
+            cu3: Pmeanrand(-8.0, 8.0),
+            cu4: Pmeanrand(-8.0, 8.0),
+            cu5: Pmeanrand(-8.0, 8.0),
+            cu6: Pmeanrand(-8.0, 8.0),
+            jpr: 1,
+            jps: Pseg(Pdup(2, Pseq([
+                Phprand(0.0, 0.45, 1), 
+                Plprand(0.55, 1.0, 1)
+            ], inf)), Pwhite(90.0, 180.0), \lin, inf),
+            amp: Pseg(Plprand(0.5, 1.0), Pwhite(30.0, 90.0), \wel, inf),
+            lpf: Pseg(20200 - Pexprand(200, 20000), Pwhite(30.0, 90.0), \wel, inf),
+            hpf: Pseg(Pexprand(20, 200), Pwhite(45.0, 120.0), \wel, inf),
+            lhf: Phprand(0.125, 0.5),
+            pan: Pseq([0.5, 0.75, 0.25, 1.0, 0.0, 0.25, 0.75], inf),
+        ])
+    )
+).play
+)
+
